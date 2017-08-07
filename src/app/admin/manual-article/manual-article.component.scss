@@ -1,0 +1,26 @@
+$right-width: 200px;
+$padding: 10px;
+
+.wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.edit-content{
+    padding-right: $right-width + $padding;
+}
+
+.form-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-left: $padding;
+    width: $right-width;
+
+    .label {
+        font-weight: 800;
+    }
+}
+
+

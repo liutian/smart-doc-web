@@ -1,0 +1,46 @@
+@import 'var';
+$text-padding-left: 1.2em;
+:host>.menu {
+    border-bottom: solid #e7e7e7 1px;
+}
+
+.menu {
+    max-height: 3em;
+    transition: all 0.6s;
+    overflow: hidden;
+    &.active {
+        max-height: 63em;
+    }
+}
+
+.menu-text {
+    display: block;
+    color: #655454;
+    line-height: 3em;
+    height: 3em;
+    padding-left: $text-padding-left;
+    padding-right: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    border-right: solid transparent 2px;
+    &:hover,
+    &.active {
+        color: $active-color;
+        border-right: solid $active-color 2px;
+    }
+    &>i {
+        position: absolute;
+        top: 0.7em;
+        right: 1em;
+    }
+}
+
+.menu-list>.menu>.menu-text {
+    padding-left: $text-padding-left * 2;
+}
+
+.menu-list>.menu>.menu-list>.menu>.menu-text {
+    padding-left: $text-padding-left * 3;
+}

@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let item of sectionData;let i = index" (click)="select(i)" [class.active]="i == activeIndex">
+    <a>
+            {{item.name}}
+        </a>
+  </li>
+</ul>

@@ -1,0 +1,28 @@
+form {
+    margin: 200px auto;
+    border: solid 1px #aaa;
+    width: 400px;
+    padding: 30px;
+    font-size: 18px;
+    .input {
+        margin-bottom: 20px;
+    }
+    label {
+        display: inline-block;
+        width: 20%;
+    }
+    input {
+        width: 78%;
+        height: 40px;
+        outline-style: none;
+        border: solid 1px #ccc;
+    }
+    button {
+        float: right;
+        padding: 8px 20px;
+        background-color: #5b5;
+        border: solid 1px #ccc;
+        color: #fff;
+        outline-style: none;
+    }
+}

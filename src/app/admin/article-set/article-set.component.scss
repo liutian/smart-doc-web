@@ -1,0 +1,33 @@
+@import 'mixin';
+
+$side-width: 30%;
+
+.modal-body {
+    @include clear;
+
+    .side {
+        float: left;
+        width: $side-width;
+    }
+
+    form {
+        float: right;
+        width: calc(100% - #{$side-width} - 1em);
+        padding-left: 20px;
+
+        .form-group{
+            @include clear;
+            width: 100%;
+
+            .label {
+                display: inline-block;
+                width: 10%;
+            }
+
+            .form-control {
+                display: inline-block;
+                width: calc(90% - 1em);
+            }
+        }
+    }
+}

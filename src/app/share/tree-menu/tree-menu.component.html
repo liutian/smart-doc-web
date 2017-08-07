@@ -1,0 +1,24 @@
+<div class="menu " *ngFor="let menu of menuData;let i = index;" [class.active]="menu.active">
+  <a class="menu-text" [class.active]="menu.articleId == (currArticleId | async)" (click)="menuClick(menu, i)">
+        {{menu.name}}
+        <i class=" fa " [ngClass]="{'fa-angle-down': !menu.active,'fa-angle-up': menu.active}"
+         *ngIf="menu.menuList?.length"></i>
+    </a>
+  <div class="menu-list">
+    <div class="menu" *ngFor="let menuItem of menu.menuList;let i = index;" [class.active]="menuItem.active">
+      <a class="menu-text" [class.active]="menuItem.articleId == (currArticleId | async)" (click)="menuClick(menuItem, i)">
+                {{menuItem.name}}
+                <i class=" fa " [ngClass]="{'fa-angle-down': !menuItem.active,'fa-angle-up': menuItem.active}"
+                *ngIf="menuItem.menuList?.length"></i>
+            </a>
+
+      <div class="menu-list">
+        <div class="menu" *ngFor="let m of menuItem.menuList;let i = index;">
+          <a class="menu-text" [class.active]="m.articleId == (currArticleId | async)" (click)="menuClick(m, i)">
+                        {{m.name}}
+                    </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

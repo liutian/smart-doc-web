@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "ng": "./node_modules/.bin/ng",
+    "start": "ng serve --open",
+    "hmr": "start --hmr",
+    "build-local": "ng build -prod ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,7 +22,9 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@angular/service-worker": "1.0.0-beta.16",
     "core-js": "^2.4.1",
+    "ng2-file-upload": "1.2.1",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },

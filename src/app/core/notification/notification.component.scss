@@ -1,0 +1,77 @@
+@import 'var';
+
+:host{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 0;
+}
+
+.notification{
+    display: inline-block;
+    max-width: 700px;
+}
+
+.notification-item {
+
+    $padding-h: 10px;
+    $padding-v: 8px;
+    $line-height: 1.5;
+
+    position: relative;
+    padding: $padding-v calc(#{$padding-h} + 1.5em);
+    margin-bottom: 15px;
+    box-shadow: 0px 2px 10px 0px #aaa;
+    border-radius: 3px;
+    background-color: #fff;
+    transform: translateY(-2em);
+    opacity: 0;
+    transition: all 0.3s;
+    overflow-y: hidden;
+    line-height: $line-height;
+
+    &.show{
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    &.remove{
+        margin-bottom: calc(-#{$padding-v}*2 - #{$line-height}em);
+        opacity: 0;
+    }
+
+    .type{
+        position: absolute;
+        top: $padding-v;
+        left: $padding-h;
+
+        &.success i{
+            color: $success;
+        }
+
+        &.info i{
+            color: $info;
+        }
+
+        &.warn i {
+            color: $warn;
+        }
+
+        &.error i{
+            color: $error;
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: calc(#{$padding-v} + 0.2em);
+        right: $padding-h;
+        color: #bbb;
+        cursor: pointer;
+
+        &:hover {
+            color: #555;
+        }
+    }
+}

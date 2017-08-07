@@ -1,0 +1,41 @@
+@import 'var';
+@import 'mixin';
+
+ul {
+    display: inline-block;
+    @include clear;
+    font-size: 0.9em;
+}
+
+li{
+    display: inline-block;
+    padding: 4px 8px;
+    cursor: pointer;
+    float:left;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+
+    &:hover:not(.disabled) {
+        border-color: $active-color;
+        color: $active-color;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+        color: #ccc;
+    }
+
+    &.active{
+        background-color: $active-color;
+        color: #fff;
+        border-color: $active-color;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    &:not(:nth-last-of-type(1)){
+        margin-right: 5px;
+    }
+}

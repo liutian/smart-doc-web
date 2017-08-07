@@ -1,0 +1,19 @@
+<div class="header">
+  <h1 class="title">
+    {{article.title}}
+  </h1>
+  <div class="info">
+    更新时间：{{article.updateDate | date:'yyyy-MM-dd'}} &nbsp;&nbsp; 作者：{{article.author}}
+  </div>
+</div>
+
+<section class="content" #vRoolView="appRoll" appRoll (rollTrigger)="onRoll($event)" stepSelector=".article-section-step" [currStep]="currArticleStep"
+  [innerHTML]="article.content">
+  加载内容...
+</section>
+
+<div class="guide-wrapper">
+  <section class="guide" appAffix="100">
+    <app-section-guide [sectionData]="sectionList" (onSelect)="selectSection($event)" [activeIndex]="sectionActive"></app-section-guide>
+  </section>
+</div>
