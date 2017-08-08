@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { ModalService, ActiveModal } from '../../share/modal/modal.service';
+import { ActiveModal } from '../../share/modal/active-modal';
+import { ModalService } from '../../share/modal/modal.service';
 import { ManualAddComponent } from '../manual-add/manual-add.component';
 import { ArticleSetComponent } from '../article-set/article-set.component';
 

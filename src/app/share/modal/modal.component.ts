@@ -6,7 +6,7 @@ import {
   ElementRef
 } from '@angular/core';
 
-import { ActiveModal } from './modal.service';
+import { ActiveModal } from './active-modal';
 
 @Component({
   templateUrl: './modal.component.html',
@@ -15,8 +15,8 @@ import { ActiveModal } from './modal.service';
 export class ModalComponent implements AfterViewInit {
   public show = false;
   @ViewChild('backdrop') backdropRef: ElementRef;
-  constructor(public activeModal: ActiveModal) {
-  }
+
+  constructor(public activeModal: ActiveModal) { }
 
   close(e, force?) {
     if (e.target === this.backdropRef.nativeElement || force) {

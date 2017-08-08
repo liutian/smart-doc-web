@@ -20,7 +20,10 @@ import { FileUploadModule } from 'ng2-file-upload';
     RouterModule
   ],
   declarations: [LayoutComponent, ModalComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective],
-  exports: [LayoutComponent, ModalComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, FileUploadModule, CommonModule, HttpModule],
+
+  exports: [LayoutComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, FileUploadModule, CommonModule, HttpModule],
+
+  entryComponents: [ModalComponent],
   providers: [ModalService, TreeMenuService]
 })
 export class ShareModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActiveModal } from '../../share/modal/active-modal';
+
 @Component({
   selector: 'app-manual-add',
   templateUrl: './manual-add.component.html',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManualAddComponent implements OnInit {
 
-  constructor() { }
+  logoUploader;
+  constructor(private activeModal: ActiveModal) { }
 
-  ngOnInit() {
+  close() {
+    this.activeModal.dismiss('dismiss');
   }
+
+  onLogoFileChange($event) {
+
+  }
+  ngOnInit() { }
 
 }

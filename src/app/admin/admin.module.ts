@@ -40,5 +40,11 @@ import { ShareModule } from '../share/share.module';
     ])
   ],
   declarations: [ArticleSetComponent, LayoutComponent, ManualAddComponent, ManualArticleComponent, ManualLayoutComponent, ManualListComponent, SiteAddComponent, SiteListComponent, UeditorComponent],
+  entryComponents: [
+    ManualAddComponent,
+    SiteListComponent,
+    SiteAddComponent,
+    ArticleSetComponent
+  ],
 })
 export class AdminModule { }
