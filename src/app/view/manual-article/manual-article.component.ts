@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { articleMock } from './article-mock';
@@ -21,7 +21,7 @@ export class ManualArticleComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: Http,
+    private http: HttpClient,
     private sanitizer: DomSanitizer) { }
 
   selectSection(data) {
@@ -34,7 +34,7 @@ export class ManualArticleComponent implements OnInit {
   }
 
   initArticle(id) {
-    this.http.get('assets/mock/article/' + id + '.json').map(res => res.json()).subscribe(article => {
+    this.http.get('assets/mock/article/' + id + '.json').subscribe(article => {
       this.article = article;
 
       _processContent(+id, this.article);

@@ -13,3 +13,7 @@
 .form-action{
     padding-right: 1em;
 }
+
+button:disabled,input:disabled,submit:disabled{
+    cursor: no-drop;
+}

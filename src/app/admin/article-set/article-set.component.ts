@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
-import { TreeMenuService } from '../../share/tree-menu/tree-menu.service';
+import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 
 @Component({
   selector: 'app-article-set',
@@ -12,10 +12,10 @@ export class ArticleSetComponent implements OnInit {
   public manual;
   public menuData;
 
-  constructor(private http: Http, private treeMenuService: TreeMenuService) { }
+  constructor(private http: HttpClient, private treeMenuService: TreeMenuService) { }
 
   ngOnInit() {
-    this.http.get('assets/mock/tree.json').map(res => res.json().data).subscribe(res => {
+    this.http.get('assets/mock/tree.json').subscribe(res => {
       this.manual = res[0];
       this.menuData = this.treeMenuService.parseTreeMenu(this.manual.menuList);
     });

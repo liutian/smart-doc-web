@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
-import { ViewService } from '../view.service';
+import { ViewService } from 'app/view/view.service';
 
 @Component({
   templateUrl: './layout.component.html',

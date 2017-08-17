@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { NotificationService } from '../../core/notification/notification.service';
+import { NotificationService } from 'app/core/notification/notification.service';
+import { ApiService } from 'app/welcome/api.service';
 
 
 @Component({
@@ -11,18 +12,20 @@ import { NotificationService } from '../../core/notification/notification.servic
 })
 export class LoginComponent {
 
+  public formData: {
+    loginName: string,
+    password: string
+  } | any = {};
+
   constructor(
+    private apiService: ApiService,
     private router: Router,
     private notification: NotificationService) { }
 
-  login($event) {
-    $event.preventDefault();
-    this.notification.show({
-      title: 'sddsdssd', type: 'error', duration: 3000, close: true, afterClose: function () {
-        console.log('close notification');
-      }
+  login() {
+    this.apiService.login(this.formData).subscribe(e => {
+      this.router.navigateByUrl('/admin/manual-list');
     })
-    // this.router.navigate(['admin']);
   }
 
 

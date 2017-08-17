@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
-import { ViewService } from '../view.service';
-import { TreeMenuService } from '../../share/tree-menu/tree-menu.service';
+import { ViewService } from 'app/view/view.service';
+import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 
 @Component({
   selector: 'app-manual-layout',
@@ -16,7 +16,7 @@ export class ManualLayoutComponent implements OnInit {
   constructor(
     private treeMenuService: TreeMenuService,
     private router: Router,
-    private http: Http,
+    private http: HttpClient,
     private currRoute: ActivatedRoute,
     private store: ViewService) { }
 

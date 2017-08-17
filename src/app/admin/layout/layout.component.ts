@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ModalService } from '../../share/modal/modal.service';
-import { SiteListComponent } from '../site-list/site-list.component';
+import { SiteListComponent } from 'app/admin/site-list/site-list.component';
 
 @Component({
   templateUrl: './layout.component.html',

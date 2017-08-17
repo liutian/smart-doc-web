@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModalService } from '../../share/modal/modal.service';
-import { SiteAddComponent } from '../site-add/site-add.component';
+import { ModalService } from 'app/share/modal/modal.service';
+import { SiteAddComponent } from 'app/admin/site-add/site-add.component';
 
 @Component({
   selector: 'app-site-list',

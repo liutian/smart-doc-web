@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { LayoutComponent } from './layout/layout.component';
 import { ModalComponent } from './modal/modal.component';
@@ -21,7 +21,7 @@ import { FileUploadModule } from 'ng2-file-upload';
   ],
   declarations: [LayoutComponent, ModalComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective],
 
-  exports: [LayoutComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, FileUploadModule, CommonModule, HttpModule],
+  exports: [LayoutComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, FileUploadModule, CommonModule, FormsModule],
 
   entryComponents: [ModalComponent],
   providers: [ModalService, TreeMenuService]

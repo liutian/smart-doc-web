@@ -1,14 +1,14 @@
-<form (submit)="login($event)">
+<form (ngSubmit)="login()" #loginForm="ngForm" autocomplete="off">
   <div class="input">
     <label>账号：</label>
-    <input type="text">
+    <input type="text" name="loginName" [(ngModel)]="formData.loginName" required>
   </div>
   <div class="input">
     <label>密码：</label>
-    <input type="text">
+    <input type="text" name="password" [(ngModel)]="formData.password" required>
   </div>
 
   <div class="clear">
-    <button type="submit">登录</button>
+    <button type="submit" [disabled]="loginForm.form.invalid">登录</button>
   </div>
 </form>

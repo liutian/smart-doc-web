@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { ActiveModal } from '../../share/modal/active-modal';
-import { ModalService } from '../../share/modal/modal.service';
-import { ManualAddComponent } from '../manual-add/manual-add.component';
-import { ArticleSetComponent } from '../article-set/article-set.component';
+import { ActiveModal } from 'app/share/modal/active-modal';
+import { ModalService } from 'app/share/modal/modal.service';
+import { ManualAddComponent } from 'app/admin/manual-add/manual-add.component';
+import { ArticleSetComponent } from 'app/admin/article-set/article-set.component';
 
 @Component({
   selector: 'app-manual-list',

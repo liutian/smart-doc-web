@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -11,7 +11,7 @@ export class ViewService implements Resolve<any>{
   manual;
   private _manualList;
 
-  constructor(public http: Http) { }
+  constructor(public http: HttpClient) { }
 
   public get manualList() {
     return this._manualList;
@@ -19,7 +19,7 @@ export class ViewService implements Resolve<any>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.siteId = route.queryParams.site || 1;
-    return this.http.get('assets/mock/tree.json').map(res => res.json().data).switchMap(res => {
+    return this.http.get('assets/mock/tree.json').switchMap(res => {
       this._manualList = res;
 
       return Observable.of(res);

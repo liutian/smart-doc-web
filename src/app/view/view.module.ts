@@ -7,7 +7,7 @@ import { ManualArticleComponent } from './manual-article/manual-article.componen
 import { ManualHomeComponent } from './manual-home/manual-home.component';
 import { ManualLayoutComponent } from './manual-layout/manual-layout.component';
 import { SectionGuideComponent } from './section-guide/section-guide.component';
-import { ShareModule } from '../share/share.module';
+import { ShareModule } from 'app/share/share.module';
 import { ViewService } from './view.service';
 
 

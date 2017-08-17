@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
-import { TreeMenuService } from '../../share/tree-menu/tree-menu.service';
+import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 
 @Component({
   selector: 'app-manual-layout',
@@ -14,10 +14,10 @@ export class ManualLayoutComponent implements OnInit {
 
   constructor(
     private treeMenuService: TreeMenuService,
-    private http: Http) { }
+    private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('assets/mock/tree.json').map(res => res.json().data).subscribe(res => {
+    this.http.get('assets/mock/tree.json').subscribe(res => {
       this.manual = res[0];
       this.menuData = this.treeMenuService.parseTreeMenu(this.manual.menuList);
     });
