@@ -14,6 +14,7 @@ import { ActiveModal } from './active-modal';
 })
 export class ModalComponent implements AfterViewInit {
   public show = false;
+
   @ViewChild('backdrop') backdropRef: ElementRef;
 
   constructor(public activeModal: ActiveModal) { }

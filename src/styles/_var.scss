@@ -1,15 +1,26 @@
+//布局变量
 $layout-header-height: 60px;
 $layout-main-width: 1200px;
+$layout-side: 300px;
+$box-margin: 10px;
+
+//总体样式
+$base-font-size: 14px;
+$bg: #fff;
+
+//主题色
 $active-color: #108ee9;
-$link-color: $active-color;
-
 $danger: #f00;
+$gray: #E6E7EC;
 
-$modal-z-index: 100;
-$modal-padding: 10px 15px;
-
-
+//标志色
 $success: #00a854;
 $info: #3aa5f2;
 $warn: #ffda00;
 $error: #ff5900;
+
+//其他辅助色
+$link-color: $active-color;
+$banner-color: $active-color;
+
+$border-radius: 3px;

@@ -2,10 +2,10 @@
   新增手册
 </div>
 <div class="modal-body">
-  <form>
+  <form (submit)="submit()" #ngForm="ngForm">
     <div class="form-group">
       <div class="label">名称</div>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="name" [(ngModel)]="formData.name" required>
     </div>
     <div class="form-group">
       <div class="label">Logo</div>
@@ -13,7 +13,7 @@
     </div>
   </form>
 </div>
-<div class="modal-footer text-right">
-  <button type="button" class="btn btn-primary ">新增</button>
+<div class="modal-footer right-layout">
+  <button type="button" [disabled]="ngForm.form.invalid" (click)="submit()" class="btn btn-primary ">新增</button>
   <div class="btn " (click)="close()">取消</div>
 </div>

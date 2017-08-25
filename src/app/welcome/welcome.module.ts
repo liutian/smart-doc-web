@@ -3,7 +3,6 @@ import { Routes, Route, RouterModule } from '@angular/router';
 
 import { ShareModule } from 'app/share/share.module';
 import { LoginComponent } from './login/login.component';
-import { ApiService } from './api.service';
 
 let routes: Routes = [
   {
@@ -15,7 +14,6 @@ let routes: Routes = [
 @NgModule({
   declarations: [LoginComponent],
   imports: [ShareModule, RouterModule.forChild(routes)],
-  exports: [LoginComponent],
-  providers: [ApiService]
+  exports: [LoginComponent]
 })
 export class WelcomeModule { }

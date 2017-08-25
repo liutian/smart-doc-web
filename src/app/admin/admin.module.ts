@@ -12,6 +12,7 @@ import { SiteAddComponent } from './site-add/site-add.component';
 import { SiteListComponent } from './site-list/site-list.component';
 import { UeditorComponent } from './ueditor/ueditor.component';
 import { ShareModule } from '../share/share.module';
+import { ApiService } from './api.service';
 
 @NgModule({
   imports: [
@@ -46,5 +47,6 @@ import { ShareModule } from '../share/share.module';
     SiteAddComponent,
     ArticleSetComponent
   ],
+  providers: [ApiService],
 })
 export class AdminModule { }

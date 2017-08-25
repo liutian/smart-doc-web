@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appRoll]',
+  selector: '[app-roll]',
   exportAs: 'appRoll'
 })
 export class RollDirective {

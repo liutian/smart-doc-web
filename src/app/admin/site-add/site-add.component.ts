@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 
+import { ActiveModal } from 'app/share/modal/active-modal';
+import { ApiService } from 'app/admin/api.service';
+
 @Component({
   selector: 'app-site-add',
   templateUrl: './site-add.component.html',
@@ -9,16 +12,31 @@ import { FileUploader } from 'ng2-file-upload';
 export class SiteAddComponent implements OnInit {
   logoUploader: FileUploader = new FileUploader({
     url: '/upload'
-  })
-  constructor() { }
+  });
+  formData: {
+    name: string,
+    logo: string,
+    type: number
+  } | any = {};
 
-  onLogoFileChange($event) {
-    console.log('onLogoFileChange');
-  }
+  constructor(
+    private apiService: ApiService,
+    private activeModal: ActiveModal) { }
+
   ngOnInit() {
     this.logoUploader.onSuccessItem = function () {
       console.log('sss');
     }
+  }
+
+  onLogoFileChange($event) {
+    console.log('onLogoFileChange');
+  }
+
+  submit() {
+    this.apiService.addSite(this.formData).subscribe(v => {
+      this.activeModal.close(true);
+    });
   }
 
 }

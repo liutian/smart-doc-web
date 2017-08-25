@@ -13,17 +13,19 @@ import { AffixDirective } from './affix.directive';
 import { RollDirective } from './roll.directive';
 import { TopDirective } from './top.directive';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ApiService } from './api.service';
+import { ModalConfirmComponent } from './modal/modal-confirm/modal-confirm.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule
   ],
-  declarations: [LayoutComponent, ModalComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective],
+  declarations: [LayoutComponent, ModalComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, ModalConfirmComponent],
 
   exports: [LayoutComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, FileUploadModule, CommonModule, FormsModule],
 
-  entryComponents: [ModalComponent],
-  providers: [ModalService, TreeMenuService]
+  entryComponents: [ModalComponent, ModalConfirmComponent],
+  providers: [ModalService, TreeMenuService, ApiService]
 })
 export class ShareModule { }

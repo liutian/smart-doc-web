@@ -1,20 +1,20 @@
 import { Directive, HostListener, HostBinding, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appTop]'
+  selector: '[app-top]'
 })
 export class TopDirective {
 
-  @Input('appTop') offset;
+  @Input() offset: number;
 
-  @HostBinding('style.display') display: string = 'none';
+  @HostBinding('class.active') active: boolean;
 
   @HostListener('document:scroll') onscroll() {
     let scroll = window.document.body.scrollTop;
-    if (scroll < +this.offset) {
-      this.display = 'none';
+    if (scroll < this.offset) {
+      this.active = false;
     } else {
-      this.display = 'block';
+      this.active = true;
     }
   }
 

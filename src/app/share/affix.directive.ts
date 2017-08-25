@@ -1,11 +1,11 @@
 import { Directive, Input, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appAffix]'
+  selector: '[app-affix]'
 })
 export class AffixDirective {
 
-  @Input('appAffix') offset: number;
+  @Input() offset: number;
   @HostBinding('class.affix') isAffix: boolean;
 
   @HostListener('document:scroll') onScroll() {

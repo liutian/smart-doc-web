@@ -1,12 +1,12 @@
 <ul class="notification" [style.top.px]="top">
-  <li class="notification-item" *ngFor="let item of list" [class.show]="item.show" [class.remove]="item.remove">
+  <li class="notification-item justify-layout" *ngFor="let item of list" [class.show]="item.show" [class.remove]="item.remove">
     <div class="type {{item.type}}">
       <i class="fa fa-check-circle " *ngIf="item.type == 'success'"></i>
       <i class="fa fa-info-circle  " *ngIf="item.type == 'info'"></i>
       <i class="fa fa-exclamation-circle  " *ngIf="item.type == 'warn'"></i>
       <i class="fa fa-times-circle  " *ngIf="item.type == 'error'"></i>
     </div>
-    <div class="title">{{item.title}}</div>
+    <div class="content">{{item.title}}</div>
 
     <i class="fa fa-times close" *ngIf="item.close" (click)="remove(item)"></i>
   </li>

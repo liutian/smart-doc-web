@@ -1,0 +1,14 @@
+@import 'var';
+
+.action{
+  padding-bottom:10px;
+}
+.title{
+  line-height: 4;
+}
+.title i{
+  color: $warn;
+}
+.title,.action{
+  text-align: center;
+}

@@ -46,3 +46,15 @@
     background-color: $hover-color;
     border-color: $hover-color;
 }
+
+.btn.btn-warn {
+    background-color: $warn;
+    color: #fff;
+    border-color: $warn;
+}
+
+.btn.btn-warn:hover {
+    $hover-color: lighten($warn,20);
+    background-color: $hover-color;
+    border-color: $hover-color;
+}

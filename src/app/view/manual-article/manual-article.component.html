@@ -7,13 +7,13 @@
   </div>
 </div>
 
-<section class="content" #vRoolView="appRoll" appRoll (rollTrigger)="onRoll($event)" stepSelector=".article-section-step" [currStep]="currArticleStep"
-  [innerHTML]="article.content">
+<section class="content" #vRoolView="appRoll" app-roll (rollTrigger)="onRoll($event)" stepSelector=".article-section-step"
+  [currStep]="currArticleStep" [innerHTML]="article.content">
   加载内容...
 </section>
 
 <div class="guide-wrapper">
-  <section class="guide" appAffix="100">
+  <section class="guide" app-affix [offset]="100">
     <app-section-guide [sectionData]="sectionList" (onSelect)="selectSection($event)" [activeIndex]="sectionActive"></app-section-guide>
   </section>
 </div>

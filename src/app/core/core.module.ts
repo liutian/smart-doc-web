@@ -20,7 +20,7 @@ import { CommonInterceptorService } from './common-interceptor.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CommonInterceptorService,
-      multi: true
+      multi: true,
     }
   ]
 })

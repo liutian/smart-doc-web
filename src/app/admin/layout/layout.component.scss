@@ -1,65 +1,40 @@
 @import 'var';
 @import 'mixin';
 
-.title {
-    float: left;
-    position: relative;
-    width: 300px;
+.logo,.set{
+    line-height: $layout-header-height;
+    font-size: $base-font-size*1.1;
+}
+
+.logo {
+    @include line-one;
+    width: $layout-side;
+    cursor: pointer;
+}
+
+.set > a {
+    vertical-align: top;
+    line-height: inherit;
+    display: inline-block;
+    margin-left: 20px;
 
     &:hover .drop-down{
         display: block;
-    }
-
-    .text {
-        @include line-one;
-        position: relative;
-        cursor: pointer;
-        margin: 0 -10px;
-        padding: 0 10px;
-        padding-right: 1.5em;
-
-        i.fa{
-            position: absolute;
-            right: 5px;
-            top: calc(50% - 0.5em);
-        }
-    }
-
-}
-
-nav {
-    float: right;
-
-    > a {
-        padding: 0 10px;
-        position: relative;
-
-        &:hover{
-            display: inline-block;
-            color: $active-color;
-        }
-    }
-
-    .site-set:hover .drop-down{
-        display: block;
-        color: #000;
     }
 }
 
 .drop-down {
     display: none;
     position: absolute;
-    top: 100%;
-    left: -10px;
-    right: -10px;
+    margin-left: -$box-margin*2;
     background-color: #fff;
-    line-height: 40px;
+    line-height: 2.5;
     box-shadow: 0px 2px 10px 0px #aaa;
-    z-index: 10;
+    color: #000;
 
     li{
         cursor: pointer;
-        padding: 0 10px;
+        padding: 0 $box-margin*2;
 
         &:hover {
             color: $active-color;

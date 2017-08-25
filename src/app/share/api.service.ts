@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 @Injectable()
@@ -10,4 +10,10 @@ export class ApiService {
   login(data) {
     return this.http.post('/open/login', data);
   }
+
+  logout() {
+    return this.http.post('/auth/logout', {});
+  }
+
+
 }

@@ -2,26 +2,32 @@
   <div>站点列表</div>
 </div>
 <div class="modal-body">
-  <div class="clear">
-    <div class="pull-right btn btn-primary" (click)="openSiteAddModal()">新增站点</div>
+  <div class="right-layout">
+    <div class=" btn btn-primary" (click)="openSiteAddModal()">新增站点</div>
   </div>
 
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>logo</th>
         <th>名称</th>
+        <th>描述</th>
+        <th>浏览量</th>
+        <th>评论量</th>
+        <th>点赞量</th>
         <th>状态</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of [1,2,3,4,5,6];let index = $index;">
-        <td>logo{{index}}</td>
-        <td>名称{{index}}</td>
-        <td>状态{{index}}</td>
+      <tr *ngFor="let item of siteList;let index = index">
+        <td>{{item.name}}</td>
+        <td>{{item.des | slice:0:10}}</td>
+        <td>{{item.viewCount}}</td>
+        <td>{{item.commentCount}}</td>
+        <td>{{item.praiseCount}}</td>
+        <td>{{item.type}}</td>
         <td>
-          <div class="btn ">删除</div>
+          <div class="btn " (click)="del(item,index)">删除</div>
           <div class="btn ">发布</div>
         </td>
       </tr>

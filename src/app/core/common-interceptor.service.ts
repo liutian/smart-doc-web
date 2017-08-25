@@ -15,7 +15,7 @@ export class CommonInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    let _req = req.clone();
+    let _req = req.clone({ withCredentials: true });
 
     if (_req.url.indexOf('//') == -1) {
       _req = _req.clone({ url: environment.apiPath + _req.url });
@@ -36,18 +36,19 @@ export class CommonInterceptorService implements HttpInterceptor {
       if (resError.status == 401) {
         notice = '会话超时';
         this.router.navigateByUrl('/admin');
-      } else if (resError.status == 400) {
+      } else if (resError.status != 400) {
         notice = '网络异常';
-      } else {
-        notice = '网络错误';
       }
 
-      this.notification.show({
-        title: notice,
-        type: 'error',
-        duration: 3000,
-        close: true
-      });
+      if (notice) {
+        this.notification.show({
+          title: notice,
+          type: 'error',
+          duration: 3000,
+          close: true
+        });
+      }
+
       return Observable.throw(resError);
     }).do((e) => {
       if (!(e instanceof HttpResponse)) return;

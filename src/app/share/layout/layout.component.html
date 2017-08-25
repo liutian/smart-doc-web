@@ -1,17 +1,20 @@
 <header>
-  <div class="layout-wrapper clear">
+  <div class="layout-wrapper ">
     <ng-content></ng-content>
   </div>
 </header>
 
-<main class="layout-wrapper clear">
+<main class="layout-wrapper ">
   <router-outlet></router-outlet>
+
+  <div class="go-top-box">
+    <div class="go-top" app-top [offset]="500">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+  </div>
 </main>
 
-<div class="go-top" appTop="500">
-  <i class="fa fa-chevron-up"></i>
-</div>
 
-<footer class="layout-wrapper clear">
+<footer class="layout-wrapper ">
   Copyright @ 2017 上海微企信息技术股份有限公司
 </footer>

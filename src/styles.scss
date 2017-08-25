@@ -1,9 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+//本项目基于inline-block + vertical-align 进行整体布局以及局部布局包括，左对齐，列表水平自适应排版，两拦布局，没有使用float布局，也尽量不用定位，主要是为了探究常规文档流布局的适应性
+//z-index 能不用就不用，如果用不用超过3
+//下拉菜单使用absolute + margin (没有使用top/bottom/left/right)
+
 @import 'styles/var';
-@import 'styles/util';
-@import 'styles/type';
 @import 'styles/mixin';
+@import 'styles/type';
+@import 'styles/util';
 @import 'styles/button';
 @import 'styles/table';
 @import 'styles/form';

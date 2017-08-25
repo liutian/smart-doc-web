@@ -1,45 +1,63 @@
-<ul class="list">
-  <li *ngFor="let item of [1,2,3,4,5,6,7,8,9]" class="list-item">
-    <div class="list-item-preview">
-      <div class="set">
-        <i class="fa fa-cog fa-spin"></i>
-        <ul>
-          <li>文档设置</li>
-          <li (click)="openArticleSetModal()">文章管理</li>
-        </ul>
-      </div>
-      <img src="http://img3x1.ddimg.cn/6/36/1114018791-1_b_1.jpg" class="pic">
-      <div class="recent-edit">
-        <div class="text">
-          最近编辑
-        </div>
+<div class="main justify-layout">
+  <div class="side-left">
+    <div class="item" (click)="switchSite()" [class.active]="!currSelectSite">全部可编辑</div>
+    <div class="item" *ngFor="let site of siteList" [class.active]="currSelectSite == site" (click)="switchSite(site)">{{site.name}}</div>
+  </div>
 
-        <ul>
-          <li>最近编辑1</li>
-          <li>最近编辑1</li>
-          <li>最近编辑1</li>
-          <li>最近编辑1</li>
-        </ul>
-      </div>
+  <div class="side-right">
+    <div class="list justify-layout">
+      <ng-template ngFor let-item [ngForOf]="manList">
+        <div class="list-item">
+          <div class="list-item-preview">
+            <div class="set">
+              <i class="fa fa-cog fa-spin"></i>
+              <ul>
+                <li>文档设置</li>
+                <li (click)="openArticleSetModal()">文章管理</li>
+              </ul>
+            </div>
+            <div class="pic">
+              <img [src]="item.cover">
+            </div>
+            <div class="recent-edit">
+              <div class="text">
+                最近编辑
+              </div>
+
+              <ul>
+                <li>最近编辑1</li>
+                <li>最近编辑1</li>
+                <li>最近编辑1</li>
+                <li>最近编辑1</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="title" routerLink="../manual">{{item.name}}</div>
+          <div class="info">
+            <a href="">
+                              浏览 {{item.viewCount}}
+                          </a> /
+            <a href="">
+                              评论 {{item.commentCount}}
+                          </a> /
+            <a href="">
+                              赞 {{item.praiseCount}}
+                          </a>
+
+          </div>
+        </div>&nbsp;
+      </ng-template>
+
+      <div class="list-item add" *ngIf="currSelectSite" (click)="addManual()">
+        <i class="fa fa-plus-circle fa-2x"></i>
+        <div class="des">创建文档</div>
+      </div>&nbsp;
+
+      <ng-template ngFor [ngForOf]="[1,2,3,4,5,6,7,8,9]">
+        <div class="list-item-empty"></div>&nbsp;
+      </ng-template>
     </div>
+  </div>
 
-    <a class="title" routerLink="../manual">
-            未来简史 中文版 尤瓦尔·赫拉利 人类简史畅销书
-        </a>
-    <div class="info">
-      <a href="">
-                浏览 1
-            </a> /
-      <a href="">
-                评论 1
-            </a> /
-      <a href="">
-                2017-01-01
-            </a>
-
-    </div>
-  </li>
-  <li class="list-item add" (click)="addManual()">
-    <i class="fa fa-plus-circle fa-2x"></i> <br>创建文档
-  </li>
-</ul>
+</div>
