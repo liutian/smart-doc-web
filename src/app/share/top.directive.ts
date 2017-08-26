@@ -10,7 +10,7 @@ export class TopDirective {
   @HostBinding('class.active') active: boolean;
 
   @HostListener('document:scroll') onscroll() {
-    let scroll = window.document.body.scrollTop;
+    const scroll = window.document.body.scrollTop;
     if (scroll < this.offset) {
       this.active = false;
     } else {

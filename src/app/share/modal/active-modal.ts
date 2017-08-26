@@ -17,7 +17,7 @@ export class ActiveModal {
   result: Promise<any> = new Promise((resolve, reject) => {
     this.resolve = resolve;
     this.reject = reject;
-  })
+  });
 
   private resolve: any;
   private reject: any;

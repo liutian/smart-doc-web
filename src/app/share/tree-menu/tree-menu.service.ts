@@ -6,9 +6,9 @@ export class TreeMenuService {
   constructor() { }
 
   parseTreeMenu(treeMenu) {
-    let rootMenu = [];
-    let childMenu = [];
-    let endMenu = [];
+    const rootMenu = [];
+    const childMenu = [];
+    const endMenu = [];
 
     treeMenu.forEach(function (menu) {
       if (menu.parentId) {
@@ -20,11 +20,12 @@ export class TreeMenuService {
 
     rootMenu.forEach(function (menu) {
       menu.menuList = [];
-      for (var i = 0; i < endMenu.length; i++) {
-        var m = endMenu[i];
-        if (m.parentId == menu.id) {
+      for (let i = 0; i < endMenu.length; i++) {
+        const m = endMenu[i];
+        if (m.parentId === menu.id) {
           menu.menuList.push(m);
           m.parent = menu;
+          m.root = rootMenu;
           childMenu.push(m);
           endMenu.splice(i, 1);
           i--;
@@ -34,16 +35,17 @@ export class TreeMenuService {
 
     childMenu.forEach(function (menu) {
       menu.menuList = [];
-      for (var i = 0; i < endMenu.length; i++) {
-        var m = endMenu[i];
-        if (m.parentId == menu.id) {
+      for (let i = 0; i < endMenu.length; i++) {
+        const m = endMenu[i];
+        if (m.parentId === menu.id) {
           menu.menuList.push(m);
           m.parent = menu;
+          m.root = rootMenu;
           endMenu.splice(i, 1);
           i--;
         }
       }
-    })
+    });
 
     return rootMenu;
   }

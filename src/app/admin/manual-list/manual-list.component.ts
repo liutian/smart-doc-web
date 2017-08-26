@@ -37,7 +37,7 @@ export class ManualListComponent implements OnInit {
     this.currSelectSite = site;
 
     if (site) {
-      let param = new HttpParams({ fromString: 'siteId=' + site.id });
+      const param = new HttpParams({ fromString: 'siteId=' + site.id });
       this.apiService.findMan(param).subscribe((manList: [any]) => {
         this.manList = manList;
       });
@@ -48,8 +48,8 @@ export class ManualListComponent implements OnInit {
     }
   }
 
-  openArticleSetModal() {
-    this.modal.open(ArticleSetComponent, { size: 'large' })
+  openArticleSetModal(man) {
+    this.modal.open(ArticleSetComponent, { size: 'large', manId: man.id });
   }
 
   addManual() {
@@ -60,7 +60,7 @@ export class ManualListComponent implements OnInit {
       this.switchSite(this.currSelectSite);
     }, function (reason) {
       console.log('modal dismiss');
-    })
+    });
   }
 
 }

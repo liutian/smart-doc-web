@@ -1,9 +1,9 @@
 <div class="modal-header">
   文章管理
 </div>
-<div class="modal-body clear">
+<div class="modal-body justify-layout">
   <div class="side">
-    <app-tree-menu [menuData]="menuData"></app-tree-menu>
+    <app-tree-menu [menuData]="menuData" [showAddBtn]="true" [showDelBtn]="true" (onDel)="articleDel($event)" (onAdd)="articleAdd($event)"></app-tree-menu>
   </div>
 
   <form>

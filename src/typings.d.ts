@@ -9,6 +9,7 @@ interface Window {
   UEDITOR_CONFIG: any;
   LazyLoad: any;
   env: any;
+  localStorage: any;
 }
 
 interface Navigator {

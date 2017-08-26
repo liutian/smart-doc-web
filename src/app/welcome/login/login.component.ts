@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 import { NotificationService } from 'app/core/notification/notification.service';
 import { ApiService } from 'app/share/api.service';
+import { StoreService } from 'app/core/store.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private notification: NotificationService,
+    private store: StoreService,
     @Inject(DOCUMENT) private doc) { }
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.apiService.login(this.formData).subscribe(e => {
+    this.apiService.login(this.formData).subscribe(res => {
       this.router.navigateByUrl('/admin/manual-list');
     }, resError => {
       this.notification.show({
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
         duration: 300000,
         close: true
       });
-    })
+    });
   }
 
 

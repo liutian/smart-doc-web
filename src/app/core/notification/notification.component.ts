@@ -16,8 +16,6 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() { }
 
-  ngAfterViewInit() { }
-
   public push(item) {
     this.list.push(item);
     window.setTimeout(() => {
@@ -31,7 +29,7 @@ export class NotificationComponent implements OnInit {
   remove(item) {
     item.remove = true;
     window.setTimeout(() => {
-      let index = this.list.findIndex((val) => item === val);
+      const index = this.list.findIndex((val) => item === val);
       this.list.splice(index, 1);
       item.afterClose && item.afterClose();
     }, 300);

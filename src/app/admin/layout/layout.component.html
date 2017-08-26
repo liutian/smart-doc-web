@@ -6,10 +6,10 @@
 
     <nav class="set">
       <a>
-        <i class="fa fa-user"></i> liuss
+        <i class="fa fa-user"></i> {{userInfo.nickname}}
         <ul class="drop-down">
           <li (click)="openSiteListModal()">站点列表</li>
-          <li>个人信息</li>
+          <li (click)="openUserEditModal()">个人信息</li>
           <li (click)="logout()">退出</li>
         </ul>
       </a>

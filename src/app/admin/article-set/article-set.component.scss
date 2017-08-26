@@ -1,33 +1,33 @@
+@import 'var';
 @import 'mixin';
 
-$side-width: 30%;
+$side-width: 40%;
 
 .modal-body {
-    @include clear;
 
     .side {
-        float: left;
         width: $side-width;
+        border-right: solid 1px $gray;
+        margin-right: -1px;
+        min-height: 150px;
     }
+}
 
-    form {
-        float: right;
-        width: calc(100% - #{$side-width} - 1em);
-        padding-left: 20px;
+form {
+    width: calc(100% - #{$side-width});
+    padding-left: 20px;
 
-        .form-group{
-            @include clear;
-            width: 100%;
+    .form-group{
+        $side-width: 20%;
 
-            .label {
-                display: inline-block;
-                width: 10%;
-            }
+        .label {
+            display: inline-block;
+            width: $side-width;
+        }
 
-            .form-control {
-                display: inline-block;
-                width: calc(90% - 1em);
-            }
+        .form-control {
+            display: inline-block;
+            width: calc(100% - #{$side-width} - 1em);
         }
     }
 }

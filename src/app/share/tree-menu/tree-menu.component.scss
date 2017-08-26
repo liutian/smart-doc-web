@@ -1,39 +1,132 @@
 @import 'var';
+@import 'mixin';
+
 $text-padding-left: 1.2em;
+$menu-name-height: $base-font-size*3;
+
 :host>.menu {
     border-bottom: solid #e7e7e7 1px;
+    margin-left: 0;
 }
 
 .menu {
-    max-height: 3em;
+    max-height: $menu-name-height;
     transition: all 0.6s;
     overflow: hidden;
+    margin-left: 2em;
+
     &.active {
-        max-height: 63em;
+        max-height: calc(60em + #{$menu-name-height});
+    }
+
+    &.add-menu {
+        .menu-name{
+            width: calc(100% - 3em);
+        }
+
+        .menu-icon{
+            padding-left: 5px;
+            width: 3em;
+        }
+
+        .menu-name,.menu-icon{
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 }
 
 .menu-text {
-    display: block;
     color: #655454;
-    line-height: 3em;
-    height: 3em;
-    padding-left: $text-padding-left;
-    padding-right: 3em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    position: relative;
+    line-height: $menu-name-height;
     border-right: solid transparent 2px;
-    &:hover,
+    text-align: justify;
+    font-size: 0;
+
     &.active {
-        color: $active-color;
+        .menu-name{
+            color: $active-color;
+        }
         border-right: solid $active-color 2px;
     }
-    &>i {
-        position: absolute;
-        top: 0.7em;
-        right: 1em;
+
+    &:hover{
+        border-right: solid $active-color 2px;
+        i.del,i.add{
+            visibility: visible;
+        }
+    }
+
+    i.del,i.add{
+        visibility: hidden;
+    }
+
+    .menu-name,.menu-icon{
+        display: inline-block;
+        padding-right: 5px;
+        vertical-align: top;
+        font-size: $base-font-size;
+    }
+
+    .menu-name{
+        @include line-one;
+        width: calc(100% - 2em);
+        cursor: pointer;
+
+        &:hover{
+            color: $active-color;
+        }
+    }
+
+    .menu-icon{
+        width: 2em;
+        text-align: justify;
+        height: $menu-name-height;
+        overflow: hidden;
+
+        &:after{
+            display: inline-block;
+            width: 100%;
+            content: '';
+        }
+
+        i{
+            cursor: pointer;
+        }
+
+        i:hover{
+            color: $active-color;
+        }
+    }
+
+    &.show-add{
+        .menu-name{
+            width: calc(100% - 3em);
+        }
+    
+        .menu-icon{
+            width: 3em;
+        }
+    }
+
+    &.show-del{
+        .menu-name{
+            width: calc(100% - 3em);
+        }
+    
+        .menu-icon{
+            width: 3em;
+        }
+    }
+
+    &.show-add.show-del{
+        .menu-name{
+            width: calc(100% - 4em);
+        }
+    
+        .menu-icon{
+            width: 4em;
+        }
     }
 }
 

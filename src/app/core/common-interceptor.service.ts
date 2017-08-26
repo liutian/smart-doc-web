@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/do';
 
@@ -17,7 +17,7 @@ export class CommonInterceptorService implements HttpInterceptor {
 
     let _req = req.clone({ withCredentials: true });
 
-    if (_req.url.indexOf('//') == -1) {
+    if (_req.url.indexOf('//') === -1) {
       _req = _req.clone({ url: environment.apiPath + _req.url });
     }
 
@@ -33,10 +33,10 @@ export class CommonInterceptorService implements HttpInterceptor {
 
     return next.handle(_req).catch(resError => {
       let notice = '';
-      if (resError.status == 401) {
+      if (resError.status === 401) {
         notice = '会话超时';
         this.router.navigateByUrl('/admin');
-      } else if (resError.status != 400) {
+      } else if (resError.status !== 400) {
         notice = '网络异常';
       }
 
@@ -50,11 +50,6 @@ export class CommonInterceptorService implements HttpInterceptor {
       }
 
       return Observable.throw(resError);
-    }).do((e) => {
-      if (!(e instanceof HttpResponse)) return;
-
-      let res = e as HttpResponse<any>;
-
     });
   }
 

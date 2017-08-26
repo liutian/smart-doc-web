@@ -26,7 +26,11 @@ export class SiteAddComponent implements OnInit {
   ngOnInit() {
     this.logoUploader.onSuccessItem = function () {
       console.log('sss');
-    }
+    };
+  }
+
+  close() {
+    this.activeModal.dismiss('dismiss');
   }
 
   onLogoFileChange($event) {

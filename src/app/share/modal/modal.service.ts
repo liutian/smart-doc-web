@@ -16,7 +16,7 @@ export class ModalService {
 
   defaultOption = {
     size: 'normal'
-  }
+  };
 
   constructor(
     private comFacResolver: ComponentFactoryResolver,

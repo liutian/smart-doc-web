@@ -21,8 +21,8 @@ export class NotificationService {
   }
 
   createComponent() {
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(NotificationComponent);
-    let injecter = ReflectiveInjector.resolveAndCreate([]);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(NotificationComponent);
+    const injecter = ReflectiveInjector.resolveAndCreate([]);
     this.componentRef = componentFactory.create(injecter);
     this.applicationRef.attachView(this.componentRef.hostView);
     document.body.appendChild(this.componentRef.location.nativeElement);

@@ -13,6 +13,7 @@
 }
 
 .set > a {
+    position: relative;
     vertical-align: top;
     line-height: inherit;
     display: inline-block;
@@ -26,7 +27,10 @@
 .drop-down {
     display: none;
     position: absolute;
-    margin-left: -$box-margin*2;
+    right: -$box-margin*2;
+    width: calc(4em + #{$box-margin*4});
+    text-align: center;
+    
     background-color: #fff;
     line-height: 2.5;
     box-shadow: 0px 2px 10px 0px #aaa;

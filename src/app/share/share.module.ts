@@ -19,11 +19,30 @@ import { ModalConfirmComponent } from './modal/modal-confirm/modal-confirm.compo
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
-  declarations: [LayoutComponent, ModalComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, ModalConfirmComponent],
+  declarations: [
+    LayoutComponent,
+    ModalComponent,
+    TreeMenuComponent,
+    PaginationComponent,
+    AffixDirective,
+    RollDirective,
+    TopDirective,
+    ModalConfirmComponent],
 
-  exports: [LayoutComponent, TreeMenuComponent, PaginationComponent, AffixDirective, RollDirective, TopDirective, FileUploadModule, CommonModule, FormsModule],
+  exports: [
+    LayoutComponent,
+    TreeMenuComponent,
+    PaginationComponent,
+    AffixDirective,
+    RollDirective,
+    TopDirective,
+    FileUploadModule,
+    CommonModule,
+    FormsModule
+  ],
 
   entryComponents: [ModalComponent, ModalConfirmComponent],
   providers: [ModalService, TreeMenuService, ApiService]

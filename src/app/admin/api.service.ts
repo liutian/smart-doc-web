@@ -20,6 +20,20 @@ export class ApiService {
     });
   }
 
+  findArticle(params: HttpParams) {
+    return this.http.get('/auth/article', {
+      params: params
+    });
+  }
+
+  updateArticle(id, data) {
+    return this.http.post('/auth/article/' + id, data);
+  }
+
+  addArticle(data) {
+    return this.http.post('/auth/article', data);
+  }
+
   addSite(data) {
     return this.http.post('/auth/site', data);
   }

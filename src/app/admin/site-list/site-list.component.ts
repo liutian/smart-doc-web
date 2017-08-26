@@ -25,8 +25,10 @@ export class SiteListComponent implements OnInit {
 
   openSiteAddModal() {
     this.modal.open(SiteAddComponent).result.then((res) => {
-      if (res) this.load();
-    })
+      if (res) {
+        this.load();
+      }
+    });
   }
 
   del(site, index) {
@@ -34,7 +36,9 @@ export class SiteListComponent implements OnInit {
       title: '确定删除吗',
       size: 'small'
     }).result.then(bool => {
-      if (bool !== true) return;
+      if (bool !== true) {
+        return;
+      }
 
       this.apiService.updateSite(site.id, { del: 1 }).subscribe(() => {
         this.siteList.splice(index, 1);
@@ -45,7 +49,7 @@ export class SiteListComponent implements OnInit {
   private load() {
     this.apiService.findSite().subscribe((siteList: [any]) => {
       this.siteList = siteList;
-    })
+    });
   }
 
 }

@@ -13,6 +13,7 @@ import { SiteListComponent } from './site-list/site-list.component';
 import { UeditorComponent } from './ueditor/ueditor.component';
 import { ShareModule } from '../share/share.module';
 import { ApiService } from './api.service';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
   imports: [
@@ -40,12 +41,23 @@ import { ApiService } from './api.service';
       }
     ])
   ],
-  declarations: [ArticleSetComponent, LayoutComponent, ManualAddComponent, ManualArticleComponent, ManualLayoutComponent, ManualListComponent, SiteAddComponent, SiteListComponent, UeditorComponent],
+  declarations: [
+    ArticleSetComponent,
+    LayoutComponent,
+    ManualAddComponent,
+    ManualArticleComponent,
+    ManualLayoutComponent,
+    ManualListComponent,
+    SiteAddComponent,
+    SiteListComponent,
+    UeditorComponent,
+    UserEditComponent],
   entryComponents: [
     ManualAddComponent,
     SiteListComponent,
     SiteAddComponent,
-    ArticleSetComponent
+    ArticleSetComponent,
+    UserEditComponent
   ],
   providers: [ApiService],
 })

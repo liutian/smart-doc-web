@@ -9,7 +9,7 @@ export class AffixDirective {
   @HostBinding('class.affix') isAffix: boolean;
 
   @HostListener('document:scroll') onScroll() {
-    let scrollTop = window.document.body.scrollTop;
+    const scrollTop = window.document.body.scrollTop;
     if (!this.isAffix && (scrollTop + 10) >= +this.offset) {
       this.isAffix = true;
     } else if (this.isAffix && scrollTop <= +this.offset) {
