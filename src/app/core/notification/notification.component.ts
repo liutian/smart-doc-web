@@ -31,7 +31,9 @@ export class NotificationComponent implements OnInit {
     window.setTimeout(() => {
       const index = this.list.findIndex((val) => item === val);
       this.list.splice(index, 1);
-      item.afterClose && item.afterClose();
+      if (item.afterClose) {
+        item.afterClose();
+      }
     }, 300);
   }
 

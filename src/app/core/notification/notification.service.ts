@@ -6,6 +6,7 @@ import { NotificationComponent } from './notification.component';
 export class NotificationService {
 
   private componentRef: ComponentRef<NotificationComponent>;
+  private lastTime = Date.now();
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -17,7 +18,11 @@ export class NotificationService {
       this.createComponent();
     }
 
-    this.componentRef.instance.push(option);
+    const now = Date.now();
+    if (now - this.lastTime > 1000 * 3) {
+      this.componentRef.instance.push(option);
+    }
+    this.lastTime = now;
   }
 
   createComponent() {

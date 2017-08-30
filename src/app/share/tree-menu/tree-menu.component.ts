@@ -12,6 +12,9 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
   styleUrls: ['./tree-menu.component.scss']
 })
 export class TreeMenuComponent implements OnInit {
+  private _selectMenuId;
+  rootMenu: any = {};
+
   @Input() showDelBtn: boolean;
   @Input() showAddBtn: boolean;
   @Output() onSelect = new EventEmitter();
@@ -23,19 +26,29 @@ export class TreeMenuComponent implements OnInit {
   get menuData() {
     return this.rootMenu.menuList;
   }
-  rootMenu: any = {};
+  @Input() set selectMenuId(val: string) {
+    if (this._selectMenuId !== val) {
+      this._selectMenuId = val;
+      if (this.menuData && val) {
+        this.expendMenu(this.menuData, val);
+      }
+    }
+  }
+  get selectMenuId() {
+    return this._selectMenuId;
+  }
 
-  currArticleId: Observable<number>;
   constructor(private route: ActivatedRoute, private modal: ModalService) { }
 
   ngOnInit() {
-    this.currArticleId = this.route.queryParams.map(params => params.articleId || -1);
+
   }
 
   menuClick(menu, index) {
     if (menu.menuList && menu.menuList.length) {
-      menu.active = !menu.active;
+      menu.expend = !menu.expend;
     } else {
+      this._selectMenuId = menu.id;
       this.onSelect.emit({
         menu: menu,
         index: index
@@ -57,13 +70,13 @@ export class TreeMenuComponent implements OnInit {
   showAddMenu(menu) {
     menu.addInput = '新增节点';
     menu.showAddInput = true;
-    menu.active = true;
+    menu.expend = true;
   }
 
   cancelAddInput(menu) {
     menu.showAddInput = false;
     if (!menu.menuList && menu.menuList.length <= 0) {
-      menu.active = false;
+      menu.expend = false;
     }
   }
 
@@ -79,4 +92,19 @@ export class TreeMenuComponent implements OnInit {
     });
   }
 
+  private expendMenu(menuList, id) {
+    for (let i = 0; i < menuList.length; i++) {
+      const menu = menuList[i];
+      if (menu.menuList && menu.menuList.length > 0) {
+        const expend = this.expendMenu(menu.menuList, id);
+        if (expend) {
+          this.menuClick(menu, i);
+          return true;
+        }
+      } else if (menu.id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

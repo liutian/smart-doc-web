@@ -14,7 +14,9 @@ import { ActiveModal } from '../active-modal';
 })
 export class ModalConfirmComponent {
 
-  constructor(private activeModal: ActiveModal) { }
+  constructor(private activeModal: ActiveModal) {
+    activeModal.option.size = 'small';
+  }
 
   confirm(bool) {
     this.activeModal.close(bool);

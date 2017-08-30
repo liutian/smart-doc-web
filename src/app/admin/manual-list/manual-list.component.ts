@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 
 import { ActiveModal } from 'app/share/modal/active-modal';
@@ -16,28 +17,39 @@ import { ApiService } from 'app/admin/api.service';
 export class ManualListComponent implements OnInit {
 
   public siteList: [any];
-  currSelectSite: any;
+  selectSiteId: any;
   manList: [any];
 
   constructor(
+    private router: Router,
     private modal: ModalService,
+    private route: ActivatedRoute,
     private apiService: ApiService) { }
 
   ngOnInit() {
-    this.apiService.findSite().subscribe((siteList: [any]) => {
-      this.siteList = siteList;
-    });
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const siteId = params.get('siteId');
 
-    this.apiService.findManWrite().subscribe((manList: [any]) => {
-      this.manList = manList;
+      this.apiService.findSite().subscribe((siteList: [any]) => {
+        this.siteList = siteList;
+      });
+
+      if (siteId) {
+        this.switchSite(params.get('siteId'));
+      } else {
+        this.apiService.findManWrite().subscribe((manList: [any]) => {
+          this.manList = manList;
+        });
+      }
+
     });
   }
 
-  switchSite(site) {
-    this.currSelectSite = site;
+  switchSite(siteId) {
+    this.selectSiteId = siteId;
 
-    if (site) {
-      const param = new HttpParams({ fromString: 'siteId=' + site.id });
+    if (siteId) {
+      const param = new HttpParams({ fromString: 'siteId=' + siteId });
       this.apiService.findMan(param).subscribe((manList: [any]) => {
         this.manList = manList;
       });
@@ -54,13 +66,18 @@ export class ManualListComponent implements OnInit {
 
   addManual() {
     const activeModal: ActiveModal = this.modal.open(ManualAddComponent, {
-      siteId: this.currSelectSite.id
+      siteId: this.selectSiteId
     });
     activeModal.result.then(() => {
-      this.switchSite(this.currSelectSite);
+      this.switchSite(this.selectSiteId);
     }, function (reason) {
-      console.log('modal dismiss');
     });
+  }
+
+  goMan(man) {
+    this.router.navigate(['admin', 'manual', man.id, {
+      siteId: this.selectSiteId ? this.selectSiteId : ''
+    }]);
   }
 
 }

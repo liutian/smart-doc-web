@@ -1,26 +1,34 @@
-$right-width: 200px;
-$padding: 10px;
+@import 'var';
 
-.wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
+.header {
+    text-align: justify;
+    font-size: 0;
+    padding-bottom: $box-margin;
+    border-bottom: solid 1px $gray;
+    margin-bottom: $box-margin;
+}
+
+.header:after {
+    display: inline-block;
+    width: 100%;
+    content: '';
+}
+
+.header{
+    .title,.action-btn{
+        font-size: $base-font-size;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .title{
+        font-size: $base-font-size*1.5;
+    }
 }
 
 .edit-content{
-    padding-right: $right-width + $padding;
-}
-
-.form-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-left: $padding;
-    width: $right-width;
-
-    .label {
-        font-weight: 800;
-    }
+    position: relative;
+    z-index: 0;//避免富文本框遮盖网页头部
 }
 
 

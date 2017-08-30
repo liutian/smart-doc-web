@@ -1,5 +1,5 @@
 <div class="btn btn-primary add-menu-btn" *ngIf="showAddBtn" (click)="showAddMenu(rootMenu)">
-  添加节点
+  添加
 </div>
 <!-- 节点输入框 -->
 <div class="menu add-menu" *ngIf="rootMenu.showAddInput">
@@ -14,15 +14,15 @@
 <!-- 节点输入框 -->
 
 <!-- 一级 -->
-<div class="menu " *ngFor="let menu of menuData;let i = index;" [class.active]="menu.active">
-  <div class="menu-text" [class.show-add]="showAddBtn" [class.show-del]="showDelBtn" [class.active]="menu.articleId == (currArticleId | async)">
+<div class="menu " *ngFor="let menu of menuData;let i = index;" [class.expend]="menu.expend">
+  <div class="menu-text" [class.show-add]="showAddBtn" [class.show-del]="showDelBtn" [class.active]="menu.id == selectMenuId">
     <div class="menu-name" (click)="menuClick(menu, i)">
       {{menu.name}}
     </div>
     <div class="menu-icon">
       <i class="add fa fa-plus" *ngIf="showAddBtn" title="添加" (click)="showAddMenu(menu)"></i>
       <i class="del fa fa-times" *ngIf="showDelBtn" title="删除" (click)="menuDel(menu, i)"></i>
-      <i class="arrow fa " [ngClass]="{'fa-angle-down': !menu.active,'fa-angle-up': menu.active}" *ngIf="menu.menuList?.length"></i>
+      <i class="arrow fa " [ngClass]="{'fa-angle-down': !menu.expend,'fa-angle-up': menu.expend}" *ngIf="menu.menuList?.length"></i>
       <i *ngIf="!menu.menuList?.length">&nbsp;</i>
     </div>
   </div>
@@ -41,15 +41,15 @@
     <!-- 节点输入框 -->
 
     <!-- 二级 -->
-    <div class="menu" *ngFor="let menuItem of menu.menuList;let i = index;" [class.active]="menuItem.active">
-      <div class="menu-text" [class.show-add]="showAddBtn" [class.show-del]="showDelBtn" [class.active]="menuItem.articleId == (currArticleId | async)">
+    <div class="menu" *ngFor="let menuItem of menu.menuList;let i = index;" [class.expend]="menuItem.expend">
+      <div class="menu-text" [class.show-add]="showAddBtn" [class.show-del]="showDelBtn" [class.active]="menuItem.id == selectMenuId">
         <div class="menu-name" (click)="menuClick(menuItem, i)">
           {{menuItem.name}}
         </div>
         <div class="menu-icon">
           <i class="add fa fa-plus" *ngIf="showAddBtn" title="添加" (click)="showAddMenu(menuItem)"></i>
           <i class="del fa fa-times" *ngIf="showDelBtn" title="删除" (click)="menuDel(menuItem, i)"></i>
-          <i class=" fa " [ngClass]="{'fa-angle-down': !menuItem.active,'fa-angle-up': menuItem.active}" *ngIf="menuItem.menuList?.length"></i>
+          <i class=" fa " [ngClass]="{'fa-angle-down': !menuItem.expend,'fa-angle-up': menuItem.expend}" *ngIf="menuItem.menuList?.length"></i>
           <i *ngIf="!menuItem.menuList?.length">&nbsp;</i>
         </div>
       </div>
@@ -69,7 +69,7 @@
 
         <div class="menu" *ngFor="let m of menuItem.menuList;let i = index;">
           <!-- 三级 -->
-          <div class="menu-text" [class.active]="m.articleId == (currArticleId | async)" (click)="menuClick(m, i)">
+          <div class="menu-text" [class.active]="m.id == selectMenuId" (click)="menuClick(m, i)">
             <div class="menu-name">
               {{m.name}}
             </div>

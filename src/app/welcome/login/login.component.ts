@@ -3,7 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 
 import { NotificationService } from 'app/core/notification/notification.service';
-import { ApiService } from 'app/share/api.service';
+import { ApiService } from 'app/core/api.service';
 import { StoreService } from 'app/core/store.service';
 
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.apiService.login(this.formData).subscribe(res => {
-      this.router.navigateByUrl('/admin/manual-list');
+      this.router.navigateByUrl('/admin');
     }, resError => {
       this.notification.show({
         title: '用户名密码错误',

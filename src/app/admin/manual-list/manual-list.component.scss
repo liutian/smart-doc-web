@@ -74,6 +74,10 @@ $min-height: 700px;
         }
     }
 
+    .title{
+        cursor: pointer;
+    }
+
     .title,.info {
         @include line-one;
         margin: 0 10px;

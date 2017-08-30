@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 import { ModalService } from 'app/share/modal/modal.service';
 import { SiteListComponent } from 'app/admin/site-list/site-list.component';
-import { ApiService } from 'app/share/api.service';
+import { ApiService } from 'app/core/api.service';
 import { StoreService } from 'app/core/store.service';
 import { UserEditComponent } from 'app/admin/user-edit/user-edit.component';
 

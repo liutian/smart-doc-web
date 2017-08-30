@@ -27,5 +27,9 @@ export class ApiService {
     });
   }
 
+  getArticle(id) {
+    return this.http.get('/open/article/' + id);
+  }
+
 
 }

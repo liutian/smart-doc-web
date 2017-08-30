@@ -35,7 +35,7 @@ export class CommonInterceptorService implements HttpInterceptor {
       let notice = '';
       if (resError.status === 401) {
         notice = '会话超时';
-        this.router.navigateByUrl('/admin');
+        this.router.navigateByUrl('/welcome/login');
       } else if (resError.status !== 400) {
         notice = '网络异常';
       }

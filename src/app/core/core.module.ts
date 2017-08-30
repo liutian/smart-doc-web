@@ -2,10 +2,11 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { NotificationComponent } from './notification/notification.component';
-import { NotificationService } from './notification/notification.service';
-import { CommonInterceptorService } from './common-interceptor.service';
-import { StoreService } from './store.service';
+import { NotificationComponent } from 'app/core/notification/notification.component';
+import { NotificationService } from 'app/core/notification/notification.service';
+import { CommonInterceptorService } from 'app/core/common-interceptor.service';
+import { StoreService } from 'app/core/store.service';
+import { ApiService } from 'app/core/api.service';
 
 
 @NgModule({
@@ -15,15 +16,17 @@ import { StoreService } from './store.service';
   ],
   declarations: [NotificationComponent],
   entryComponents: [NotificationComponent],
-  exports: [NotificationComponent, HttpClientModule],
+  exports: [NotificationComponent],
   providers: [
+    ApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CommonInterceptorService,
       multi: true,
     },
     NotificationService,
-    StoreService
+    StoreService,
+
   ]
 })
 export class CoreModule {

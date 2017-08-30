@@ -30,7 +30,6 @@ export class ArticleSetComponent implements OnInit {
       });
 
       this.menuData = this.treeMenuService.parseTreeMenu(articleList);
-      console.dir(this.menuData);
     });
   }
 

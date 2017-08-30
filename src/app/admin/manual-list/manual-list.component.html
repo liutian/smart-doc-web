@@ -1,7 +1,7 @@
 <div class="main justify-layout">
   <div class="side-left">
-    <div class="item" (click)="switchSite()" [class.active]="!currSelectSite">全部可编辑</div>
-    <div class="item" *ngFor="let site of siteList" [class.active]="currSelectSite == site" (click)="switchSite(site)">{{site.name}}</div>
+    <div class="item" (click)="switchSite()" [class.active]="!selectSiteId">全部可编辑</div>
+    <div class="item" *ngFor="let site of siteList" [class.active]="selectSiteId == site.id" (click)="switchSite(site.id)">{{site.name}}</div>
   </div>
 
   <div class="side-right">
@@ -33,7 +33,7 @@
             </div>
           </div>
 
-          <div class="title" routerLink="../manual">{{item.name}}</div>
+          <div class="title" (click)="goMan(item)">{{item.name}}</div>
           <div class="info">
             <a href="">
                               浏览 {{item.viewCount}}
@@ -49,7 +49,7 @@
         </div>&nbsp;
       </ng-template>
 
-      <div class="list-item add" *ngIf="currSelectSite" (click)="addManual()">
+      <div class="list-item add" *ngIf="selectSiteId" (click)="addManual()">
         <i class="fa fa-plus-circle fa-2x"></i>
         <div class="des">创建文档</div>
       </div>&nbsp;

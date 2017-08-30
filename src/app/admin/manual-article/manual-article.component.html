@@ -1,28 +1,12 @@
-<div class="wrapper">
+<div class="header">
+  <div class="title">{{article.title}}</div>
 
-  <div class="edit-content">
-    <app-ueditor [(content)]="content"></app-ueditor>
+  <div class="action-btn">
+    <div class="btn btn-primary" (click)="submit()">保存</div>
+    <div class="btn btn-default" (click)="submit(true)">发布</div>
   </div>
+</div>
 
-  <form class="form-wrapper">
-    <div class="label">
-      标题
-    </div>
-    <input type="text" class="form-control">
-
-    <div class="label">
-      作者
-    </div>
-    <input type="text" class="form-control">
-
-    <div class="label">
-      更新备注
-    </div>
-    <textarea rows="5" class="form-control"></textarea>
-
-    <div class="form-action right-layout">
-      <button type="submit" class="btn">更新</button>
-      <button type="button" class="btn btn-primary">发布</button>
-    </div>
-  </form>
+<div class="edit-content">
+  <app-ueditor [(content)]="article.content"></app-ueditor>
 </div>

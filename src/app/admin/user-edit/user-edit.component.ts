@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StoreService } from 'app/core/store.service';
-import { ApiService } from 'app/share/api.service';
+import { ApiService } from 'app/core/api.service';
 import { pick } from 'app/util/util';
 import { NotificationService } from 'app/core/notification/notification.service';
 import { ActiveModal } from 'app/share/modal/active-modal';

@@ -14,32 +14,12 @@ import { UeditorComponent } from './ueditor/ueditor.component';
 import { ShareModule } from '../share/share.module';
 import { ApiService } from './api.service';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { AdminRoutingModule } from './routing/admin-routing.module';
 
 @NgModule({
   imports: [
     ShareModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: LayoutComponent,
-        children: [
-          {
-            path: 'manual-list',
-            component: ManualListComponent
-          }, {
-            path: 'manual',
-            component: ManualLayoutComponent,
-            children: [
-              {
-                path: '',
-                component: ManualArticleComponent
-              }
-            ]
-          }
-
-        ]
-      }
-    ])
+    AdminRoutingModule
   ],
   declarations: [
     ArticleSetComponent,
@@ -51,7 +31,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     SiteAddComponent,
     SiteListComponent,
     UeditorComponent,
-    UserEditComponent],
+    UserEditComponent
+  ],
   entryComponents: [
     ManualAddComponent,
     SiteListComponent,

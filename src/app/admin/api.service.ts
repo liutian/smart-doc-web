@@ -20,10 +20,18 @@ export class ApiService {
     });
   }
 
+  getMan(id) {
+    return this.http.get('/auth/man/' + id);
+  }
+
   findArticle(params: HttpParams) {
     return this.http.get('/auth/article', {
       params: params
     });
+  }
+
+  getArticle(id) {
+    return this.http.get('/auth/article/' + id);
   }
 
   updateArticle(id, data) {

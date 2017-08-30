@@ -15,13 +15,15 @@ $menu-name-height: $base-font-size*3;
     overflow: hidden;
     margin-left: 2em;
 
-    &.active {
+    &.expend {
         max-height: calc(60em + #{$menu-name-height});
     }
 
     &.add-menu {
         .menu-name{
             width: calc(100% - 3em);
+            line-height: 2;
+            padding: 0 5px;
         }
 
         .menu-icon{

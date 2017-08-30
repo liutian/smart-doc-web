@@ -4,12 +4,12 @@ import { Routes, Route, RouterModule } from '@angular/router';
 import { ShareModule } from 'app/share/share.module';
 import { LoginComponent } from './login/login.component';
 
-let routes: Routes = [
+const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
   }
-]
+];
 
 @NgModule({
   declarations: [LoginComponent],

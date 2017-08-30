@@ -23,6 +23,7 @@ export class ModalService {
     private injector: Injector,
     private applicationRef: ApplicationRef) { }
 
+
   open(content: any, option?: any): ActiveModal {
     const modalOption = option ? Object.assign({}, this.defaultOption, option) : this.defaultOption;
     const activeModal = new ActiveModal(modalOption);

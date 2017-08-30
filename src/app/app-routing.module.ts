@@ -4,20 +4,20 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'view',
-    loadChildren: './view/view.module#ViewModule'
+    loadChildren: 'app/view/view.module#ViewModule',
   }, {
     path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule'
+    loadChildren: 'app/admin/admin.module#AdminModule'
   }, {
     path: 'welcome',
-    loadChildren: './welcome/welcome.module#WelcomeModule'
+    loadChildren: 'app/welcome/welcome.module#WelcomeModule'
   }, {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'view/manual/home'
+    redirectTo: '/welcome/login'
   }, {
     path: '**',
-    redirectTo: ''
+    redirectTo: '/welcome/login'
   }
 ];
 

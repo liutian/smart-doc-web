@@ -25,13 +25,17 @@ export class ActiveModal {
   constructor(public option: any) { }
 
   close(result) {
-    if (!this.windowModalRef) return;
+    if (!this.windowModalRef) {
+      return;
+    }
     this.resolve(result);
     this.removeEle();
   }
 
   dismiss(reason) {
-    if (!this.windowModalRef) return;
+    if (!this.windowModalRef) {
+      return;
+    }
     this.reject(reason);
     this.removeEle();
   }
@@ -41,7 +45,9 @@ export class ActiveModal {
     windowModalEle.parentNode.removeChild(windowModalEle);
     this.windowModalRef.destroy();
 
-    if (this.contentRef) this.contentRef.destroy();
+    if (this.contentRef) {
+      this.contentRef.destroy();
+    }
 
     this.windowModalRef = null;
     this.contentRef = null;
