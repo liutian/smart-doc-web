@@ -12,6 +12,7 @@ header {
 
 main{
     margin-top: $layout-header-height;
+    overflow: hidden;//作为BFC
 }
 
 footer {

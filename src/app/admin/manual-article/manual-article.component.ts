@@ -5,7 +5,6 @@ import { ApiService } from 'app/admin/api.service';
 import { NotificationService } from 'app/core/notification/notification.service';
 
 @Component({
-  selector: 'app-manual-article',
   templateUrl: './manual-article.component.html',
   styleUrls: ['./manual-article.component.scss']
 })
@@ -35,4 +34,6 @@ export class ManualArticleComponent implements OnInit {
       this.notification.show({ title: '更新成功' });
     });
   }
+
+
 }

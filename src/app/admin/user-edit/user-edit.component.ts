@@ -7,7 +7,6 @@ import { NotificationService } from 'app/core/notification/notification.service'
 import { ActiveModal } from 'app/share/modal/active-modal';
 
 @Component({
-  selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.scss']
 })

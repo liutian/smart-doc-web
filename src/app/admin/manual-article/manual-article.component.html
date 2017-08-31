@@ -2,6 +2,7 @@
   <div class="title">{{article.title}}</div>
 
   <div class="action-btn">
+    <a class="btn btn-primary" routerLink="/view/s/{{article.siteId}}/{{article.manId}}/{{article.id}}">预览</a>
     <div class="btn btn-primary" (click)="submit()">保存</div>
     <div class="btn btn-default" (click)="submit(true)">发布</div>
   </div>

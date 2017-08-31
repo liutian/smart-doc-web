@@ -10,7 +10,6 @@ import { ArticleSetComponent } from 'app/admin/article-set/article-set.component
 import { ApiService } from 'app/admin/api.service';
 
 @Component({
-  selector: 'app-manual-list',
   templateUrl: './manual-list.component.html',
   styleUrls: ['./manual-list.component.scss']
 })

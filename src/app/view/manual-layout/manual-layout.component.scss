@@ -1,24 +1,37 @@
+@import 'var';
+
 $min-height: 700px;
-.wrapper {
-    margin-top: 20px !important;
+
+:host {
+    display: block;
+    margin-top: 20px ;
     background-color: #fff;
     border-radius: 3px;
     box-shadow: 0px 0px 5px 2px rgba(168, 174, 179, 0.3);
+    font-size: 0;
+    min-height: $min-height;
+}
+
+
+aside,.main-content{
+    display: inline-block;
+    font-size: $base-font-size;
+    vertical-align: top;
 }
 
 aside {
-    width: 15%;
-    float: left;
-    min-height: $min-height;
+    width: 20%;
     border-right: solid #e7e7e7 1px;
     margin-right: -1px;
+    padding-left: $box-margin;
+
+    .title{
+        line-height: 3;
+        font-size: 1.4em;
+        border-bottom: solid 1px $gray;
+    }
 }
 
 .main-content {
-    position: relative;
-    width: 85%;
-    float: left;
-    min-height: $min-height;
-    padding: 20px;
-    border-left: solid #e7e7e7 1px;
+    width: 80%;
 }

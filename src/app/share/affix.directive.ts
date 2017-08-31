@@ -1,7 +1,7 @@
 import { Directive, Input, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[app-affix]'
+  selector: '[appAffix]'
 })
 export class AffixDirective {
 

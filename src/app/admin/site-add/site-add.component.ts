@@ -5,7 +5,6 @@ import { ActiveModal } from 'app/share/modal/active-modal';
 import { ApiService } from 'app/admin/api.service';
 
 @Component({
-  selector: 'app-site-add',
   templateUrl: './site-add.component.html',
   styleUrls: ['./site-add.component.scss']
 })

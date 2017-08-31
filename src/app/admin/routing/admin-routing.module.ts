@@ -33,7 +33,6 @@ import { AuthGuardGuard } from './auth-guard.guard';
       }
     ])
   ],
-  exports: [RouterModule],
   providers: [AuthGuardGuard]
 })
 export class AdminRoutingModule { }

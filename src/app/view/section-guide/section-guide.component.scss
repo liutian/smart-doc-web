@@ -1,22 +1,15 @@
 @import 'var';
+@import 'mixin';
+
 :host {
     font-size: 0.9em;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-}
-
 li {
-    list-style-type: none;
+    @include line-one;
     cursor: pointer;
     line-height: 1.5;
     padding: 0.5em 0.6em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-left: solid 2px #ccc;
     &:hover,
     &.active {
         border-left-color: $active-color;

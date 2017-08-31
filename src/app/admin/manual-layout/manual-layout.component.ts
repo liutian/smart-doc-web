@@ -7,7 +7,6 @@ import { ApiService } from 'app/admin/api.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-manual-layout',
   templateUrl: './manual-layout.component.html',
   styleUrls: ['./manual-layout.component.scss']
 })

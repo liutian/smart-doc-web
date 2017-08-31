@@ -1,12 +1,17 @@
+@import 'var';
+
 $guide-affix-width: 200px;
 $guide-affix-height: 50px;
+
 :host {
-    margin-top: -10px;
+    margin: $box-margin $box-margin*2;
+    display: block;
+    position: relative;
 }
 
 .content,
 .header {
-    padding-right: 220px;
+    padding-right: $guide-affix-width + $box-margin*2;
 
 }
 
@@ -18,21 +23,21 @@ $guide-affix-height: 50px;
 .header .info {
     text-align: right;
     color: #999;
-    padding-right: 50px;
-    padding-bottom: 2em;
 }
 
 .guide-wrapper {
     position: absolute;
     top: $guide-affix-height;
-    right: 15px;
+    right: 0;
     width: $guide-affix-width;
+    text-align: right;
+}
+
+.guide{
+    text-align: left;
 }
 
 .guide.affix {
     position: fixed;
-    top: $guide-affix-height;
-    bottom: 100px;
-    overflow: auto;
-    width: $guide-affix-width;
+    top: $layout-header-height + $guide-affix-height;
 }

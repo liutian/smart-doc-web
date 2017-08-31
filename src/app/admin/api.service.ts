@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   getMan(id) {
-    return this.http.get('/auth/man/' + id);
+    return this.http.get(`/auth/man/${id}`);
   }
 
   findArticle(params: HttpParams) {
@@ -31,11 +31,11 @@ export class ApiService {
   }
 
   getArticle(id) {
-    return this.http.get('/auth/article/' + id);
+    return this.http.get(`/auth/article/${id}`);
   }
 
   updateArticle(id, data) {
-    return this.http.post('/auth/article/' + id, data);
+    return this.http.post(`/auth/article/${id}`, data);
   }
 
   addArticle(data) {
@@ -47,7 +47,7 @@ export class ApiService {
   }
 
   updateSite(id, data) {
-    return this.http.post('/auth/site/' + id, data);
+    return this.http.post(`/auth/site/${id}`, data);
   }
 
   addMan(data) {

@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { articleMock } from './article-mock';
+import { ApiService } from 'app/view/api.service';
 
 @Component({
-  selector: 'app-manual-article',
   templateUrl: './manual-article.component.html',
   styleUrls: ['./manual-article.component.scss']
 })
 export class ManualArticleComponent implements OnInit {
 
   @ViewChild('vRoolView') vRollView;
-  sectionActive: number = 0;
+  sectionActive = 0;
   article: any = {};
   sectionList = [];
   currArticleStep;
@@ -21,7 +20,7 @@ export class ManualArticleComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient,
+    private apiService: ApiService,
     private sanitizer: DomSanitizer) { }
 
   selectSection(data) {
@@ -29,15 +28,14 @@ export class ManualArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.route.queryParams.map(params => params.articleId).subscribe(id => this.initArticle(id));
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.initArticle(params.get('articleId'));
+    });
   }
 
   initArticle(id) {
-    this.http.get('assets/mock/article/' + id + '.json').subscribe(article => {
+    this.apiService.getArticle(id).subscribe(article => {
       this.article = article;
-
-      _processContent(+id, this.article);
 
       this.sectionList = [];
       this.article.content = this.processContentHtml(this.article.content, ' > h2', (ele, index) => {
@@ -47,20 +45,21 @@ export class ManualArticleComponent implements OnInit {
       this.article.content = this.sanitizer.bypassSecurityTrustHtml(this.article.content);
       window.setTimeout(() => {
         this.vRollView.calcSection();
+        this.sectionActive = 0;
       }, 0);
 
-    })
+    });
   }
 
   processContentHtml(content, selector, callback) {
-    var fragment = window.document.createDocumentFragment();
-    var eleHost = document.createElement('div');
+    const fragment = window.document.createDocumentFragment();
+    const eleHost = document.createElement('div');
     eleHost.className = 'host';
     eleHost.innerHTML = content;
     fragment.appendChild(eleHost);
-    var eleLink = fragment.querySelectorAll('.host ' + selector);
+    const eleLink = fragment.querySelectorAll('.host ' + selector);
 
-    for (var i = 0; i < eleLink.length; i++) {
+    for (let i = 0; i < eleLink.length; i++) {
       callback(eleLink[i], i);
     }
 
@@ -72,14 +71,3 @@ export class ManualArticleComponent implements OnInit {
   }
 }
 
-
-function _processContent(id, article) {
-  switch (id) {
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-      article.content = articleMock[id];
-  }
-}

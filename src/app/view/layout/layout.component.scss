@@ -1,19 +1,13 @@
 @import 'var';
 
 .logo {
-        height: 2em;
-        vertical-align: -0.5em;
-        padding-right: 1em;
-}
+    display: inline-block;
+    height: $layout-header-height;
+    line-height: $layout-header-height;
 
-nav {
-    float: right;
-    a {
-        display: inline-block;
-        padding: 0 1em;
-    }
-    a.active,
-    a:hover {
-        color: $active-color;
+    img{
+        height: calc(100% - #{$box-margin*2});
+        vertical-align: middle;
+        margin-right: $box-margin;
     }
 }

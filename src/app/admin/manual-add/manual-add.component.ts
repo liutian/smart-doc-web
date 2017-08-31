@@ -4,7 +4,6 @@ import { ActiveModal } from 'app/share/modal/active-modal';
 import { ApiService } from 'app/admin/api.service';
 
 @Component({
-  selector: 'app-manual-add',
   templateUrl: './manual-add.component.html',
   styleUrls: ['./manual-add.component.scss']
 })

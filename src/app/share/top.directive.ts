@@ -1,7 +1,7 @@
 import { Directive, HostListener, HostBinding, Input } from '@angular/core';
 
 @Directive({
-  selector: '[app-top]'
+  selector: '[appTop]'
 })
 export class TopDirective {
 

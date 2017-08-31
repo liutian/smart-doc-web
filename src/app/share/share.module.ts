@@ -41,7 +41,8 @@ import { ModalService } from 'app/share/modal/modal.service';
     TopDirective,
     FileUploadModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   entryComponents: [ModalComponent, ModalConfirmComponent],
   providers: [TreeMenuService, ModalService]

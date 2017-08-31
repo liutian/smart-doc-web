@@ -7,7 +7,6 @@ import { ApiService } from 'app/admin/api.service';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
 
 @Component({
-  selector: 'app-site-list',
   templateUrl: './site-list.component.html',
   styleUrls: ['./site-list.component.scss']
 })

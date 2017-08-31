@@ -1,70 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-import { ViewService } from 'app/view/view.service';
 import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 
 @Component({
-  selector: 'app-manual-layout',
   templateUrl: './manual-layout.component.html',
   styleUrls: ['./manual-layout.component.scss']
 })
 export class ManualLayoutComponent implements OnInit {
-
+  selectArticleId;
   menuData;
+  siteData;
+
   constructor(
     private treeMenuService: TreeMenuService,
     private router: Router,
     private http: HttpClient,
-    private currRoute: ActivatedRoute,
-    private store: ViewService) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.currRoute.queryParams.subscribe(params => {
-      let manualId = params.manual || 1;
+    this.route.data.subscribe((data: { siteData: any }) => {
+      this.siteData = data.siteData;
+      const articleList = data.siteData.articleList.map(a => {
+        return {
+          id: a.id,
+          name: a.title,
+          parentId: a.parentId
+        };
+      });
 
-      if (!this.store.manual || this.store.manual.id != manualId) {
-        this.store.manualList.forEach(m => {
-          if (m.id == manualId) {
-            this.store.manual = m;
-          }
-        });
-        if (!this.store.manual) throw Error(`this manual(:${manualId}) not exists`);
-        this.menuData = this.treeMenuService.parseTreeMenu(this.store.manual.menuList);
-      }
-
-      if (params.articleId) {
-        this.activeMenu(this.store.manual.menuList, params.articleId);
-      }
-    })
-
+      this.menuData = this.treeMenuService.parseTreeMenu(articleList);
+      this.selectArticleId = this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('articleId');
+    });
   }
 
   goto(e) {
-    this.router.navigate(['view/manual/article'], {
-      queryParams: {
-        site: this.store.siteId,
-        manual: this.store.manual.id,
-        articleId: e.menu.articleId
-      },
-      fragment: 'top-anchor'
-    })
+    this.router.navigate([e.menu.id], {
+      relativeTo: this.route
+    });
   }
 
-  activeMenu(menuList, articleId) {
-    if (!articleId) return;
-
-    menuList.every(function (menu) {
-      if (menu.articleId == articleId) {
-        menu.active = true;
-        if (menu.parent) {
-          menu.parent.active = true;
-          menu.parent.parent && (menu.parent.parent.active = true);
-        }
-        return false;
-      }
-      return true;
-    })
-  }
 }

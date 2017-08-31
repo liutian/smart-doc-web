@@ -5,23 +5,18 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 
+import { ApiService } from 'app/view/api.service';
+
 @Injectable()
-export class ViewService implements Resolve<any>{
-  siteId;
-  manual;
-  private _manualList;
+export class SiteViewResolver implements Resolve<any> {
 
-  constructor(public http: HttpClient) { }
-
-  public get manualList() {
-    return this._manualList;
-  }
+  constructor(private apiService: ApiService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    this.siteId = route.queryParams.site || 1;
-    return this.http.get('assets/mock/tree.json').switchMap(res => {
-      this._manualList = res;
-
+    return this.apiService.getSiteAndMan(
+      route.paramMap.get('siteId'),
+      route.paramMap.get('manId')
+    ).switchMap(res => {
       return Observable.of(res);
     });
   }

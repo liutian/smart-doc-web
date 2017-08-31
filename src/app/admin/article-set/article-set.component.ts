@@ -6,7 +6,6 @@ import { ApiService } from 'app/admin/api.service';
 import { ActiveModal } from 'app/share/modal/active-modal';
 
 @Component({
-  selector: 'app-article-set',
   templateUrl: './article-set.component.html',
   styleUrls: ['./article-set.component.scss']
 })
