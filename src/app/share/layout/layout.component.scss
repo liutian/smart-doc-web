@@ -13,10 +13,12 @@ header {
 main{
     margin-top: $layout-header-height;
     overflow: hidden;//作为BFC
+    min-height: calc(100vh - #{$layout-footer-height + $layout-header-height});
 }
 
 footer {
-    line-height: 4;
+    height: $layout-footer-height;
+    line-height: $layout-footer-height;
     text-align: center;
     color: #aaa;
 }
