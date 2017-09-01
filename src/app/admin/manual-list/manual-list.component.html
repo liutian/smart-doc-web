@@ -1,6 +1,6 @@
 <div class="main justify-layout">
   <div class="side-left">
-    <div class="item" (click)="switchSite()" [class.active]="!selectSiteId">全部可编辑</div>
+    <div class="item" (click)="switchSite(null)" [class.active]="!selectSiteId">全部可编辑</div>
     <div class="item" *ngFor="let site of siteList" [class.active]="selectSiteId == site.id" (click)="switchSite(site.id)">{{site.name}}</div>
   </div>
 

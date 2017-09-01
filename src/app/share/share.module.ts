@@ -14,6 +14,7 @@ import { TopDirective } from 'app/share/top.directive';
 import { ModalComponent } from 'app/share/modal/modal.component';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
 import { ModalService } from 'app/share/modal/modal.service';
+import { UeditorComponent } from 'app/share/ueditor/ueditor.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ModalService } from 'app/share/modal/modal.service';
     FormsModule
   ],
   declarations: [
+    UeditorComponent,
     LayoutComponent,
     TreeMenuComponent,
     PaginationComponent,
@@ -33,6 +35,7 @@ import { ModalService } from 'app/share/modal/modal.service';
   ],
 
   exports: [
+    UeditorComponent,
     LayoutComponent,
     TreeMenuComponent,
     PaginationComponent,

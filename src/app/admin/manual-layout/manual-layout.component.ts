@@ -37,6 +37,7 @@ export class ManualLayoutComponent implements OnInit {
           parentId: a.parentId
         };
       });
+
       this.menuData = this.treeMenuService.parseTreeMenu(articleList);
       this.man = res[1];
 

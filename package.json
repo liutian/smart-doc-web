@@ -6,7 +6,7 @@
     "ng": "./node_modules/.bin/ng",
     "start": "ng serve --open",
     "hmr": "start --hmr",
-    "build-local": "ng build -prod ",
+    "build": "ng build -prod --stats-json stats.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
