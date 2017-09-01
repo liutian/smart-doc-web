@@ -10,6 +10,8 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
+import { environment } from 'environments/environment';
+
 
 let idCount = 0;
 const scriptPath = 'assets/lib/ueditor/';
@@ -61,7 +63,7 @@ export class UeditorComponent implements OnInit, AfterViewInit {
     editorProt._bkGetActionUrl = editorProt._bkGetActionUrl_copy;
     editorProt.getActionUrl = function (action) {
       if (action === 'uploadimage' || action === 'uploadscrawl' || action === 'uploadimage' || action === 'uploadvideo') {
-        return window.env.APIURL + '/mobile/upload/one?action=' + action;
+        return environment.apiPath + '/open/upload?action=' + action;
       } else {
         return this._bkGetActionUrl.call(this, action);
       }
