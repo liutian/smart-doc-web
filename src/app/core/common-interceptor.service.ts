@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
 
 import { environment } from 'environments/environment';
 import { NotificationService } from 'app/core/notification/notification.service';
@@ -11,10 +9,23 @@ import { NotificationService } from 'app/core/notification/notification.service'
 @Injectable()
 export class CommonInterceptorService implements HttpInterceptor {
 
+  private urlTime = {};
+
   constructor(private notification: NotificationService,
     private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (this.urlTime[req.url] && Date.now() - this.urlTime[req.url] < 5000) {
+      this.notification.show({
+        title: '请求过于频繁',
+        type: 'error',
+        duration: 3000,
+        close: true
+      });
+      return Observable.throw(new Error('overrequest'));
+    } else {
+      this.urlTime[req.url] = Date.now();
+    }
 
     let _req = req.clone({ withCredentials: true });
 
