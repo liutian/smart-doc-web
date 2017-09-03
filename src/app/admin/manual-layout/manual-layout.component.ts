@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 import { ApiService } from 'app/admin/api.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/zip';
 
 @Component({
   templateUrl: './manual-layout.component.html',

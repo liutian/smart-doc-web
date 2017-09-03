@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 
+import 'app/share/rxjs';
 import { LayoutComponent } from 'app/share/layout/layout.component';
 import { TreeMenuComponent } from 'app/share/tree-menu/tree-menu.component';
 import { PaginationComponent } from 'app/share/pagination/pagination.component';
