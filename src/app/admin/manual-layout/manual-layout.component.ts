@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 import { ApiService } from 'app/admin/api.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/zip';
 
 @Component({
   templateUrl: './manual-layout.component.html',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ManualLayoutComponent implements OnInit {
   public menuData;
-  man = {};
+  man;
   backSiteId;
   selectArticleId;
 

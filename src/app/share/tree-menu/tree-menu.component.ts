@@ -1,7 +1,7 @@
-import 'rxjs/add/operator/map';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 import { ModalService } from 'app/share/modal/modal.service';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
