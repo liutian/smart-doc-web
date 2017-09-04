@@ -15,7 +15,7 @@ export class CommonInterceptorService implements HttpInterceptor {
     private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.urlTime[req.url] && Date.now() - this.urlTime[req.url] < 5000) {
+    if (req.method !== 'GET' && this.urlTime[req.url] && Date.now() - this.urlTime[req.url] < 5000) {
       this.notification.show({
         title: '请求过于频繁',
         type: 'error',
@@ -23,7 +23,7 @@ export class CommonInterceptorService implements HttpInterceptor {
         close: true
       });
       return Observable.throw(new Error('overrequest'));
-    } else {
+    } else if (req.method !== 'GET') {
       this.urlTime[req.url] = Date.now();
     }
 

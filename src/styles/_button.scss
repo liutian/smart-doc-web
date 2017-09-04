@@ -7,6 +7,7 @@
     border-radius: 3px;
     outline-width: 0;
     transition: all 0.3s cubic-bezier(.645,.045,.355,1);
+    line-height: 1.2;
 }
 
 .btn.btn-link{
@@ -19,7 +20,7 @@
 }
 
 .btn:hover {
-    border-color: $active-color;
+    border-color: $active-color ;
     color: $active-color;
 }
 

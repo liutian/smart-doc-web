@@ -1,7 +1,4 @@
-// //清除浮动
-// .clear{
-//     @include clear();
-// }
+@import 'var';
 
 //居中自适应
 .layout-wrapper {
@@ -30,6 +27,22 @@
     & > *{
         display: inline-block;
     }
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.danger{
+    color: $danger;
 }
 
 //列表水平自适应布局

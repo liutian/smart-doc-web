@@ -5,6 +5,7 @@ $pic-height: 200px;
 $layout-left: 300px;
 $list-item-width: 210px;
 $min-height: 700px;
+$side-item-height: 50px;
 
 .main{
     margin-top:  20px ;
@@ -22,7 +23,7 @@ $min-height: 700px;
         position: relative;
         padding: 0 $box-margin*2;
         font-size: 1.1em;
-        line-height: 3;
+        line-height: $side-item-height;
         cursor: pointer;
 
         &:hover{
@@ -49,6 +50,18 @@ $min-height: 700px;
 
 .side-right{
     width: calc(100% - #{$layout-left} - #{$box-margin});
+
+    .action-btn-bar{
+        height: $side-item-height;
+        background-color: #fff;
+        line-height: $side-item-height;
+        padding: 0 $box-margin;
+        margin-bottom: $box-margin ;
+
+        i{
+            cursor: pointer;
+        }
+    }
 }
 
 .list-item-empty,.list-item{

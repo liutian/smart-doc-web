@@ -7,6 +7,7 @@ import { SiteListComponent } from 'app/admin/site-list/site-list.component';
 import { ApiService } from 'app/core/api.service';
 import { StoreService } from 'app/core/store.service';
 import { UserEditComponent } from 'app/admin/user-edit/user-edit.component';
+import { BroadcastService, Keys } from 'app/core/broadcast.service';
 
 @Component({
   templateUrl: './layout.component.html',
@@ -17,6 +18,7 @@ export class LayoutComponent implements OnInit {
   userInfo: any;
 
   constructor(
+    private broadcastService: BroadcastService,
     private modal: ModalService,
     private apiService: ApiService,
     private router: Router,
@@ -29,7 +31,9 @@ export class LayoutComponent implements OnInit {
   }
 
   openSiteListModal() {
-    this.modal.open(SiteListComponent, { size: 'large' });
+    this.modal.open(SiteListComponent, { size: 'large' }).result.then(v => {
+      this.broadcastService.emit(Keys.SiteList);
+    });
   }
 
   openUserEditModal() {

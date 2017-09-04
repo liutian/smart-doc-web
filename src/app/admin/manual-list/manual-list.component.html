@@ -1,10 +1,22 @@
 <div class="main justify-layout">
   <div class="side-left">
-    <div class="item" (click)="switchSite(null)" [class.active]="!selectSiteId">全部可编辑</div>
-    <div class="item" *ngFor="let site of siteList" [class.active]="selectSiteId == site.id" (click)="switchSite(site.id)">{{site.name}}</div>
+    <div class="item" *ngFor="let site of siteList" [class.active]="selectSite?.id == site.id" (click)="switchSite(site)">{{site.name}}</div>
+    <div class="item text-center danger" *ngIf="siteList?.length <= 0" (click)="openSiteAddModal()">
+      暂无数据 点击添加
+    </div>
   </div>
 
-  <div class="side-right">
+  <div class="side-right" *ngIf="selectSite">
+    <div class="action-btn-bar justify-layout">
+      <div class="left">
+        <button class="btn btn-primary btn-add" [disabled]="!selectSite.own" (click)="addManual()">创建文档</button>
+      </div>
+
+      <span class="right">
+        <i class="fa fa-th"></i>&nbsp;
+        <i class="fa fa-list"></i>
+      </span>
+    </div>
     <div class="list justify-layout">
       <ng-template ngFor let-item [ngForOf]="manList">
         <div class="list-item">
@@ -49,10 +61,10 @@
         </div>&nbsp;
       </ng-template>
 
-      <div class="list-item add" *ngIf="selectSiteId" (click)="addManual()">
+      <!-- <div class="list-item add" *ngIf="selectSiteId" (click)="addManual()">
         <i class="fa fa-plus-circle fa-2x"></i>
         <div class="des">创建文档</div>
-      </div>&nbsp;
+      </div>&nbsp; -->
 
       <ng-template ngFor [ngForOf]="[1,2,3,4,5,6,7,8,9]">
         <div class="list-item-empty"></div>&nbsp;

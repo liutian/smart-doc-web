@@ -10,6 +10,10 @@ export class ApiService {
     return this.http.get(`/open/siteAndMan/${siteId}/${manId}`);
   }
 
+  getAuthSiteAndMan(siteId, manId) {
+    return this.http.get(`/auth/siteAndMan/${siteId}/${manId}`);
+  }
+
   getArticle(id) {
     return this.http.get(`/open/article/${id}`);
   }

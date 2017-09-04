@@ -10,8 +10,8 @@ export class ApiService {
     return this.http.get('/auth/site');
   }
 
-  findManWrite() {
-    return this.http.get('/auth/man-write');
+  findSiteAboutMe() {
+    return this.http.get('/auth/site-about-me');
   }
 
   findMan(params: HttpParams) {

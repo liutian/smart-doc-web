@@ -11,7 +11,8 @@ export class SiteViewResolver implements Resolve<any> {
   constructor(private apiService: ApiService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.apiService.getSiteAndMan(
+    const api = route.queryParamMap.get('preview') ? 'getAuthSiteAndMan' : 'getSiteAndMan';
+    return this.apiService[api](
       route.paramMap.get('siteId'),
       route.paramMap.get('manId')
     ).switchMap(res => {

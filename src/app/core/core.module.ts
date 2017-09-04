@@ -7,6 +7,7 @@ import { NotificationService } from 'app/core/notification/notification.service'
 import { CommonInterceptorService } from 'app/core/common-interceptor.service';
 import { StoreService } from 'app/core/store.service';
 import { ApiService } from 'app/core/api.service';
+import { BroadcastService } from './broadcast.service';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ApiService } from 'app/core/api.service';
     },
     NotificationService,
     StoreService,
+    BroadcastService,
 
   ]
 })
