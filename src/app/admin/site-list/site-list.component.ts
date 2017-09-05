@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalService } from 'app/share/modal/modal.service';
 import { ActiveModal } from 'app/share/modal/active-modal';
-import { SiteAddComponent } from 'app/admin/site-add/site-add.component';
+import { SiteSaveComponent } from 'app/admin/site-save/site-save.component';
 import { ApiService } from 'app/admin/api.service';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
 
@@ -11,10 +11,11 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
   styleUrls: ['./site-list.component.scss']
 })
 export class SiteListComponent implements OnInit {
-
+  private listChange = false;
   siteList: [any];
 
   constructor(
+    private activeModal: ActiveModal,
     private modal: ModalService,
     private apiService: ApiService) { }
 
@@ -22,10 +23,32 @@ export class SiteListComponent implements OnInit {
     this.load();
   }
 
+  close() {
+    this.activeModal.close(this.listChange);
+  }
+
+  switchType(item) {
+    const params = { type: item.type ? 0 : 1 };
+    this.apiService.updateSite(item.id, params).subscribe(() => {
+      // this.listChange = true;
+      item.type = params.type;
+    });
+  }
+
   openSiteAddModal() {
-    this.modal.open(SiteAddComponent).result.then((res) => {
-      if (res) {
+    this.modal.open(SiteSaveComponent).result.then((res) => {
+      if (res === true) {
         this.load();
+        this.listChange = true;
+      }
+    });
+  }
+
+  openSiteEditModal(item) {
+    this.modal.open(SiteSaveComponent, { siteId: item.id }).result.then((res) => {
+      if (res === true) {
+        this.load();
+        this.listChange = true;
       }
     });
   }
@@ -41,6 +64,7 @@ export class SiteListComponent implements OnInit {
 
       this.apiService.updateSite(site.id, { del: 1 }).subscribe(() => {
         this.siteList.splice(index, 1);
+        this.listChange = true;
       });
     });
   }

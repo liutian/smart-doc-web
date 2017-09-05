@@ -2,7 +2,7 @@
   <div class="side-left">
     <div class="item" *ngFor="let site of siteList" [class.active]="selectSite?.id == site.id" (click)="switchSite(site)">{{site.name}}</div>
     <div class="item text-center danger" *ngIf="siteList?.length <= 0" (click)="openSiteAddModal()">
-      暂无数据 点击添加
+      暂无站点 点击添加
     </div>
   </div>
 
@@ -13,23 +13,25 @@
       </div>
 
       <span class="right">
-        <i class="fa fa-th"></i>&nbsp;
-        <i class="fa fa-list"></i>
+        <i class="fa fa-th" [class.active]="this.viewType == 'list'" (click)="this.viewType = 'list'" role="menu"></i>&nbsp;
+        <i class="fa fa-list" [class.active]="this.viewType == 'table'"  (click)="this.viewType = 'table'"  role="menu"></i>
       </span>
     </div>
-    <div class="list justify-layout">
-      <ng-template ngFor let-item [ngForOf]="manList">
+    <div class="list justify-layout" *ngIf="viewType === 'list'">
+      <ng-template ngFor let-item let-index [ngForOf]="manList">
         <div class="list-item">
           <div class="list-item-preview">
             <div class="set">
               <i class="fa fa-cog fa-spin"></i>
               <ul>
-                <li>文档设置</li>
                 <li (click)="openArticleSetModal(item)">文章管理</li>
+                <li (click)="openManEditModal(item)">设置</li>
+                <li (click)="delMan(item,index)">删除</li>
+
               </ul>
             </div>
             <div class="pic">
-              <img [src]="item.cover">
+              <img [src]="'//127.0.0.1:8080' + item.cover">
             </div>
             <div class="recent-edit">
               <div class="text">
@@ -70,6 +72,38 @@
         <div class="list-item-empty"></div>&nbsp;
       </ng-template>
     </div>
+
+    <table class="table table-hover" *ngIf="viewType === 'table'">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>描述</th>
+          <th>浏览量</th>
+          <th>评论量</th>
+          <th>点赞量</th>
+          <th>是否上架</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of manList;let index = index">
+          <td>{{item.name}}</td>
+          <td>{{item.des| slice:0:10}}</td>
+          <td>{{item.viewCount}}</td>
+          <td>{{item.commentCount}}</td>
+          <td>{{item.praiseCount}}</td>
+          <td>{{item.state ? '是' : '否'}}</td>
+          <td>
+            <div class="btn btn-primary btn-outline" (click)="openArticleSetModal(item)">文章管理</div>
+            <div class="btn btn-primary btn-outline" (click)="openManEditModal(item)">设置</div>
+            <div class="btn btn-danger btn-outline" (click)="delMan(item,index)">删除</div>
+          </td>
+        </tr>
+        <tr *ngIf="manList?.length === 0">
+          <td colspan="7" class="text-center danger">暂无数据</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

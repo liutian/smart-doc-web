@@ -1,4 +1,4 @@
-<div class="backdrop" [class.show]="show" #backdrop (click)="close($event)">
+<div class="backdrop" [class.show]="show" #backdrop (click)="backdropClick($event)">
   <div class="window window-{{activeModal.option.size}}" [class.show]="show">
     <ng-content></ng-content>
     <i class="fa fa-times " *ngIf="activeModal.option.showClose" (click)="close($event, true)"></i>

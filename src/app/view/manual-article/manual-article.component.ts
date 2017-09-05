@@ -16,6 +16,7 @@ export class ManualArticleComponent implements OnInit {
   article: any = {};
   sectionList = [];
   currArticleStep;
+  preview: boolean;
 
   constructor(
     private router: Router,
@@ -28,13 +29,15 @@ export class ManualArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.preview = !!this.route.snapshot.queryParamMap.get('preview');
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.initArticle(params.get('articleId'));
     });
   }
 
   initArticle(id) {
-    this.apiService.getArticle(id).subscribe(article => {
+    const api = this.preview ? 'getAuthArticle' : 'getArticle';
+    this.apiService[api](id).subscribe(article => {
       this.article = article;
 
       this.sectionList = [];

@@ -14,11 +14,11 @@ export class TreeMenuComponent implements OnInit {
   private _selectMenuId;
   rootMenu: any = {};
 
-  @Input() showDelBtn: boolean;
-  @Input() showAddBtn: boolean;
-  @Output() onSelect = new EventEmitter();
-  @Output() onDel = new EventEmitter();
-  @Output() onAdd = new EventEmitter();
+  @Input() showBtn: boolean;
+  @Output() select = new EventEmitter();
+  @Output() del = new EventEmitter();
+  @Output() add = new EventEmitter();
+  @Output() edit = new EventEmitter();
   @Input() set menuData(v) {
     this.rootMenu.menuList = v;
   }
@@ -43,12 +43,32 @@ export class TreeMenuComponent implements OnInit {
 
   }
 
+  confirmEditInput(menu) {
+    this.edit.emit({
+      id: menu.id,
+      name: menu.name,
+      callback: (ok) => {
+        menu.showEdit = false;
+      }
+    });
+  }
+
+  cancelEditInput(menu) {
+    menu.name = menu._name;
+    menu.showEdit = false;
+  }
+
+  showEditInput(menu) {
+    menu._name = menu.name;
+    menu.showEdit = true;
+  }
+
   menuClick(menu, index) {
     if (menu.menuList && menu.menuList.length) {
       menu.expend = !menu.expend;
     } else {
       this._selectMenuId = menu.id;
-      this.onSelect.emit({
+      this.select.emit({
         menu: menu,
         index: index
       });
@@ -58,7 +78,7 @@ export class TreeMenuComponent implements OnInit {
   menuDel(menu, index) {
     this.modal.open(ModalConfirmComponent, { title: '确定删除吗?' }).result.then(result => {
       if (result === true) {
-        this.onDel.emit({
+        this.del.emit({
           menu: menu,
           index: index
         });
@@ -67,7 +87,7 @@ export class TreeMenuComponent implements OnInit {
   }
 
   showAddMenu(menu) {
-    menu.addInput = '新增节点';
+    menu.addInput = '新增文章';
     menu.showAddInput = true;
     menu.expend = true;
   }
@@ -80,7 +100,7 @@ export class TreeMenuComponent implements OnInit {
   }
 
   confirmAddInput(menu) {
-    this.onAdd.emit({
+    this.add.emit({
       name: menu.addInput,
       parent: menu,
       callback: (ok) => {

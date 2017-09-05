@@ -1,0 +1,37 @@
+<div class="modal-header">
+  {{siteId ? '新建手册' : '编辑手册'}}
+</div>
+<div class="modal-body">
+  <form (submit)="submit()" #ngForm="ngForm">
+    <div class="form-group">
+      <div class="label">名称</div>
+      <input type="text" class="form-control" name="name" [(ngModel)]="formData.name" required>
+    </div>
+    <div class="form-group">
+      <div class="label">描述</div>
+      <textarea class="form-control" name="des" [(ngModel)]="formData.des"></textarea>
+    </div>
+    <div class="form-group">
+      <div class="label">是否上架</div>
+      <label>
+        <input type="radio" name="state" [(ngModel)]="formData.state" [value]="1" > 
+        是
+      </label>&nbsp;&nbsp;
+      <label>
+        <input type="radio" name="state" [(ngModel)]="formData.state" [value]="0"> 
+        否
+    </label>
+    </div>
+    <div class="form-group">
+      <div class="label">Logo</div>
+      <div class="form-control upload-cover">
+        <img [src]="'//127.0.0.1:8080' + formData.cover" *ngIf="formData.cover" class="cover-preview">
+        <div class="btn btn-primary" appUpload (complete)="onUpload($event)">选择文件</div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer right-layout">
+  <button type="button" [disabled]="ngForm.form.invalid" (click)="submit()" class="btn btn-primary ">{{manId ? '保存' : '新建'}}</button>
+  <div class="btn " (click)="close()">取消</div>
+</div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManualAddComponent } from './manual-add.component';
+import { SiteSaveComponent } from './site-save.component';
 
-describe('ManualAddComponent', () => {
-  let component: ManualAddComponent;
-  let fixture: ComponentFixture<ManualAddComponent>;
+describe('SiteSaveComponent', () => {
+  let component: SiteSaveComponent;
+  let fixture: ComponentFixture<SiteSaveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManualAddComponent ]
+      declarations: [SiteSaveComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManualAddComponent);
+    fixture = TestBed.createComponent(SiteSaveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

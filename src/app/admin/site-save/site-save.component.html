@@ -1,5 +1,5 @@
 <div class="modal-header">
-  新增站点
+  {{siteId ? '编辑站点' : '创建站点'}}
 </div>
 <div class="modal-body">
   <form (submit)="submit()" #ngForm="ngForm">
@@ -13,12 +13,16 @@
     </div>
     <div class="form-group">
       <div class="label">Logo</div>
-      <input type="file" ng2FileSelect [uploader]="logoUploader" (change)="onLogoFileChange($event)" class="form-control">
+      <div class="form-control upload-logo">
+        <img [src]="'//127.0.0.1:8080' + formData.logo" *ngIf="formData.logo" class="logo-preview">
+        <div class="btn btn-primary" appUpload (complete)="onUpload($event)">选择文件</div>
+      </div>
+
     </div>
   </form>
 </div>
 
 <div class="modal-footer right-layout">
-  <button type="button" class="btn btn-primary " [disabled]="ngForm.form.invalid" (click)="submit()">新增</button>
+  <button type="button" class="btn btn-primary " [disabled]="ngForm.form.invalid" (click)="submit()">{{siteId ? '保存' : '新增'}}</button>
   <div class="btn " (click)="close()">取消</div>
 </div>

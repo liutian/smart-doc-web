@@ -10,6 +10,7 @@
     line-height: 1.2;
 }
 
+
 .btn.btn-link{
     border-width: 0;
     background-color: transparent;
@@ -36,6 +37,19 @@
     border-color: $hover-color;
 }
 
+.btn.btn-primary.btn-outline {
+    background-color: #fff;
+    color: $active-color;
+    border-color: $active-color;
+}
+
+.btn.btn-primary.btn-outline:hover {
+    $hover-color: lighten($active-color,20);
+
+    color: $hover-color;
+    border-color: $hover-color;
+}
+
 .btn.btn-danger {
     background-color: $danger;
     color: #fff;
@@ -48,6 +62,19 @@
     border-color: $hover-color;
 }
 
+.btn.btn-danger.btn-outline {
+    background-color: #fff;
+    color: $danger;
+    border-color: $danger;
+}
+
+.btn.btn-danger.btn-outline:hover {
+    $hover-color: lighten($danger,20);
+
+    color: $hover-color;
+    border-color: $hover-color;
+}
+
 .btn.btn-warn {
     background-color: $warn;
     color: #fff;
@@ -57,5 +84,18 @@
 .btn.btn-warn:hover {
     $hover-color: lighten($warn,20);
     background-color: $hover-color;
+    border-color: $hover-color;
+}
+
+.btn.btn-warn.btn-outline {
+    background-color: #fff;
+    color: $warn;
+    border-color: $warn;
+}
+
+.btn.btn-warn.btn-outline:hover {
+    $hover-color: lighten($warn,20);
+
+    color: $hover-color;
     border-color: $hover-color;
 }

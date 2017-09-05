@@ -26,7 +26,7 @@ export class UserEditComponent implements OnInit {
   }
 
   close() {
-    this.activeModal.dismiss('dismiss');
+    this.activeModal.close('close');
   }
 
   submit() {

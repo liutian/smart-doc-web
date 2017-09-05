@@ -51,6 +51,10 @@ $side-item-height: 50px;
 .side-right{
     width: calc(100% - #{$layout-left} - #{$box-margin});
 
+    .right i.active{
+        color: $active-color;
+    }
+
     .action-btn-bar{
         height: $side-item-height;
         background-color: #fff;
@@ -61,6 +65,10 @@ $side-item-height: 50px;
         i{
             cursor: pointer;
         }
+    }
+
+    .table{
+        background-color: #fff;
     }
 }
 

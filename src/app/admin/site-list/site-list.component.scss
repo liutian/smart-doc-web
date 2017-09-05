@@ -1,5 +1,23 @@
+@import 'var';
 @import 'mixin';
 
+.modal-header{
+    font-size: 0 !important;
+
+    & > *{
+        font-size: $base-font-size;
+        vertical-align: middle !important;
+    }
+
+    .close-btn{
+        color: #999;
+        cursor: pointer;
+
+        &:hover{
+            color: #333;
+        }
+    }
+}
 table {
     margin: 15px 0;
 }

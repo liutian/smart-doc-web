@@ -10,6 +10,7 @@ interface Window {
   LazyLoad: any;
   env: any;
   localStorage: any;
+  qq: any;
 }
 
 interface Navigator {

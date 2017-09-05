@@ -31,8 +31,10 @@ export class LayoutComponent implements OnInit {
   }
 
   openSiteListModal() {
-    this.modal.open(SiteListComponent, { size: 'large' }).result.then(v => {
-      this.broadcastService.emit(Keys.SiteList);
+    this.modal.open(SiteListComponent, { size: 'large', backdrop: false }).result.then(result => {
+      if (result === true) {
+        this.broadcastService.emit(Keys.SiteList);
+      }
     });
   }
 

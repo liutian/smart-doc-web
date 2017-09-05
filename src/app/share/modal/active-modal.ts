@@ -28,15 +28,11 @@ export class ActiveModal {
     if (!this.windowModalRef) {
       return;
     }
-    this.resolve(result);
-    this.removeEle();
-  }
-
-  dismiss(reason) {
-    if (!this.windowModalRef) {
-      return;
+    if (result instanceof Error) {
+      this.reject(result);
+    } else {
+      this.resolve(result);
     }
-    this.reject(reason);
     this.removeEle();
   }
 

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { FileUploadModule } from 'ng2-file-upload';
 
 import 'app/share/rxjs';
 import { LayoutComponent } from 'app/share/layout/layout.component';
@@ -16,6 +15,7 @@ import { ModalComponent } from 'app/share/modal/modal.component';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
 import { ModalService } from 'app/share/modal/modal.service';
 import { UeditorComponent } from 'app/share/ueditor/ueditor.component';
+import { UploadDirective } from './upload.directive';
 
 @NgModule({
   imports: [
@@ -24,6 +24,7 @@ import { UeditorComponent } from 'app/share/ueditor/ueditor.component';
     FormsModule
   ],
   declarations: [
+    UploadDirective,
     UeditorComponent,
     LayoutComponent,
     TreeMenuComponent,
@@ -36,6 +37,7 @@ import { UeditorComponent } from 'app/share/ueditor/ueditor.component';
   ],
 
   exports: [
+    UploadDirective,
     UeditorComponent,
     LayoutComponent,
     TreeMenuComponent,
@@ -43,7 +45,6 @@ import { UeditorComponent } from 'app/share/ueditor/ueditor.component';
     AffixDirective,
     RollDirective,
     TopDirective,
-    FileUploadModule,
     CommonModule,
     FormsModule,
     RouterModule

@@ -10,6 +10,10 @@ export class ApiService {
     return this.http.get('/auth/site');
   }
 
+  getSite(id) {
+    return this.http.get(`/auth/site/${id}`);
+  }
+
   findSiteAboutMe() {
     return this.http.get('/auth/site-about-me');
   }
@@ -52,5 +56,9 @@ export class ApiService {
 
   addMan(data) {
     return this.http.post('/auth/man', data);
+  }
+
+  updateMan(id, data) {
+    return this.http.post(`/auth/man/${id}`, data);
   }
 }

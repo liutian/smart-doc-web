@@ -15,7 +15,8 @@ import { ActiveModal } from './active-modal';
 export class ModalService {
 
   defaultOption = {
-    size: 'normal'
+    size: 'normal',
+    backdrop: true
   };
 
   constructor(

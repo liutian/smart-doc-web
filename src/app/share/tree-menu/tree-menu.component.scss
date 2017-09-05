@@ -19,7 +19,7 @@ $menu-name-height: $base-font-size*3;
         max-height: calc(60em + #{$menu-name-height});
     }
 
-    &.add-menu {
+    .menu-text-input {
         .menu-name{
             width: calc(100% - 3em);
             line-height: 2;
@@ -54,12 +54,12 @@ $menu-name-height: $base-font-size*3;
 
     &:hover{
         border-right: solid $active-color 2px;
-        i.del,i.add{
+        i.del,i.add,i.edit{
             visibility: visible;
         }
     }
 
-    i.del,i.add{
+    i.del,i.add,i.edit{
         visibility: hidden;
     }
 
@@ -82,7 +82,7 @@ $menu-name-height: $base-font-size*3;
 
     .menu-icon{
         width: 2em;
-        text-align: justify;
+        text-align: right;
         height: $menu-name-height;
         overflow: hidden;
 
@@ -101,35 +101,16 @@ $menu-name-height: $base-font-size*3;
         }
     }
 
-    &.show-add{
+    &.show-btn{
         .menu-name{
-            width: calc(100% - 3em);
+            width: calc(100% - 5em);
         }
     
         .menu-icon{
-            width: 3em;
+            width: 5em;
         }
     }
 
-    &.show-del{
-        .menu-name{
-            width: calc(100% - 3em);
-        }
-    
-        .menu-icon{
-            width: 3em;
-        }
-    }
-
-    &.show-add.show-del{
-        .menu-name{
-            width: calc(100% - 4em);
-        }
-    
-        .menu-icon{
-            width: 4em;
-        }
-    }
 }
 
 .menu-list>.menu>.menu-text {

@@ -1,5 +1,6 @@
-<div class="modal-header">
+<div class="modal-header justify-layout">
   <div>站点列表</div>
+  <i class="fa fa-times close-btn" (click)="close()"></i>
 </div>
 <div class="modal-body">
   <div class="right-layout">
@@ -14,7 +15,7 @@
         <th>浏览量</th>
         <th>评论量</th>
         <th>点赞量</th>
-        <th>状态</th>
+        <th>是否公开</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -25,10 +26,11 @@
         <td>{{item.viewCount}}</td>
         <td>{{item.commentCount}}</td>
         <td>{{item.praiseCount}}</td>
-        <td>{{item.type}}</td>
+        <td>{{item.type ? '是' : '否'}}</td>
         <td>
-          <div class="btn " (click)="del(item,index)">删除</div>
-          <div class="btn ">发布</div>
+          <div class="btn btn-primary btn-outline" (click)="switchType(item)">{{item.type ? '不公开' : '公开'}}</div>
+          <div class="btn btn-primary btn-outline" (click)="openSiteEditModal(item)">编辑</div>
+          <div class="btn btn-danger btn-outline" (click)="del(item,index)">删除</div>
         </td>
       </tr>
     </tbody>

@@ -17,4 +17,8 @@ export class ApiService {
   getArticle(id) {
     return this.http.get(`/open/article/${id}`);
   }
+
+  getAuthArticle(id) {
+    return this.http.get(`/auth/article/${id}`);
+  }
 }

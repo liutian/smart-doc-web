@@ -17,6 +17,12 @@ export class NotificationComponent implements OnInit {
   ngOnInit() { }
 
   public push(item) {
+    if (!item.title) {
+      throw new Error('notification no title');
+    } else if (this.list.length > 0 && this.list[this.list.length - 1].title === item.title) {
+      return;
+    }
+
     this.list.push(item);
     window.setTimeout(() => {
       item.show = true;

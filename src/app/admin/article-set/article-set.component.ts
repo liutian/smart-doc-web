@@ -63,4 +63,13 @@ export class ArticleSetComponent implements OnInit {
     });
   }
 
+  articleEdit(e) {
+    this.apiService.updateArticle(e.id, { title: e.name }).subscribe((res: any) => {
+      e.callback(true);
+    }, () => {
+      e.callback(false);
+    });
+  }
+
 }
+

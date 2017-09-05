@@ -1,6 +1,6 @@
 <aside>
   <div class="title">{{siteData.site.name}}</div>
-  <app-tree-menu [menuData]="menuData" (onSelect)="goto($event)" [selectMenuId]="selectArticleId"></app-tree-menu>
+  <app-tree-menu [menuData]="menuData" (select)="goto($event)" [selectMenuId]="selectArticleId"></app-tree-menu>
 </aside>
 
 <div class="main-content">

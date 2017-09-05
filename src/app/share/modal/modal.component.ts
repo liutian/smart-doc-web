@@ -19,12 +19,18 @@ export class ModalComponent implements AfterViewInit {
 
   constructor(public activeModal: ActiveModal) { }
 
-  close(e, force?) {
-    if (e.target === this.backdropRef.nativeElement || force) {
+  close(e) {
+    if (e.target === this.backdropRef.nativeElement) {
       this.show = false;
       window.setTimeout(() => {
         this.activeModal.close('backdrop');
       }, 300);
+    }
+  }
+
+  backdropClick(e) {
+    if (this.activeModal.option.backdrop) {
+      this.close(e);
     }
   }
 

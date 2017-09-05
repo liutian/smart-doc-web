@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { NotificationService } from 'app/core/notification/notification.service';
 import { ApiService } from 'app/core/api.service';
@@ -34,12 +35,14 @@ export class LoginComponent implements OnInit {
     this.apiService.login(this.formData).subscribe(res => {
       this.router.navigateByUrl('/admin');
     }, resError => {
-      this.notification.show({
-        title: '用户名密码错误',
-        type: 'error',
-        duration: 300000,
-        close: true
-      });
+      if (resError instanceof HttpErrorResponse) {
+        this.notification.show({
+          title: '用户名密码错误',
+          type: 'error',
+          duration: 1500,
+          close: true
+        });
+      }
     });
   }
 

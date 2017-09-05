@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ArticleSetComponent } from 'app/admin/article-set/article-set.component';
 import { LayoutComponent } from 'app/admin/layout/layout.component';
-import { ManualAddComponent } from 'app/admin/manual-add/manual-add.component';
+import { ManualSaveComponent } from 'app/admin/manual-save/manual-save.component';
 import { ManualArticleComponent } from 'app/admin/manual-article/manual-article.component';
 import { ManualLayoutComponent } from 'app/admin/manual-layout/manual-layout.component';
 import { ManualListComponent } from 'app/admin/manual-list/manual-list.component';
-import { SiteAddComponent } from 'app/admin/site-add/site-add.component';
+import { SiteSaveComponent } from 'app/admin/site-save/site-save.component';
 import { SiteListComponent } from 'app/admin/site-list/site-list.component';
 
 import { ShareModule } from 'app/share/share.module';
@@ -24,18 +24,18 @@ import { AdminRoutingModule } from 'app/admin/routing/admin-routing.module';
   declarations: [
     ArticleSetComponent,
     LayoutComponent,
-    ManualAddComponent,
+    ManualSaveComponent,
     ManualArticleComponent,
     ManualLayoutComponent,
     ManualListComponent,
-    SiteAddComponent,
+    SiteSaveComponent,
     SiteListComponent,
     UserEditComponent
   ],
   entryComponents: [
-    ManualAddComponent,
+    ManualSaveComponent,
     SiteListComponent,
-    SiteAddComponent,
+    SiteSaveComponent,
     ArticleSetComponent,
     UserEditComponent
   ],
