@@ -61,12 +61,9 @@
     display: inline-block;
 }
 
-.link{
+.link:hover{
     text-decoration: underline;
-    
-    &:hover{
-        color: $link-color;
-    }
+    color: $link-color;
 }
 
 [role=menu]{

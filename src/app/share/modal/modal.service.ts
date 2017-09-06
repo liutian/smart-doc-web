@@ -14,7 +14,7 @@ import { ActiveModal } from './active-modal';
 @Injectable()
 export class ModalService {
 
-  defaultOption = {
+  private defaultOption = {
     size: 'normal',
     backdrop: true
   };

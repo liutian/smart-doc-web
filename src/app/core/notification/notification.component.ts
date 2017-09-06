@@ -9,7 +9,7 @@ export class NotificationComponent implements OnInit {
 
   @HostBinding('style.top.px')
   top = 20;
-  duration = 4000;
+  duration = 1500;
   list = [];
 
   constructor() { }

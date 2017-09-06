@@ -23,7 +23,7 @@ export class ModalComponent implements AfterViewInit {
     if (e.target === this.backdropRef.nativeElement) {
       this.show = false;
       window.setTimeout(() => {
-        this.activeModal.close('backdrop');
+        this.activeModal.backdrop();
       }, 300);
     }
   }

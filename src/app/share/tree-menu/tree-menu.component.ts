@@ -11,9 +11,7 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
   styleUrls: ['./tree-menu.component.scss']
 })
 export class TreeMenuComponent implements OnInit {
-  private _selectMenuId;
   rootMenu: any = {};
-
   @Input() showBtn: boolean;
   @Output() select = new EventEmitter();
   @Output() del = new EventEmitter();
@@ -36,6 +34,8 @@ export class TreeMenuComponent implements OnInit {
   get selectMenuId() {
     return this._selectMenuId;
   }
+
+  private _selectMenuId;
 
   constructor(private route: ActivatedRoute, private modal: ModalService) { }
 

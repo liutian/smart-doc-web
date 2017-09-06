@@ -14,14 +14,14 @@ import {
 export class RollDirective {
   stepSection = [];
   currStepIndex;
-  private lastScrollTop;
-
   @Input() stepSelector: string;
   @Output() rollTrigger = new EventEmitter<number>();
   @Input() set currStep(index) {
     window.document.body.scrollTop = this.stepSection[index] - this.offset;
   }
   @Input() offset = 0;
+
+  private lastScrollTop;
 
   constructor(private ele: ElementRef) { }
 

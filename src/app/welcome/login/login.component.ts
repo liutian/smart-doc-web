@@ -15,7 +15,7 @@ import { StoreService } from 'app/core/store.service';
 })
 export class LoginComponent implements OnInit {
 
-  public formData: {
+  formData: {
     loginName: string,
     password: string
   } | any = {};

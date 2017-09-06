@@ -21,12 +21,13 @@ body {
 }
 
 a {
-    text-decoration: none !important;
+    text-decoration: none ;
     cursor: pointer;
 
     &:hover{
-        
+        text-decoration: none ;
     }
+
 }
 
 ul{

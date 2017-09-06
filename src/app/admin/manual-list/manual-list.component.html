@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <div class="title" (click)="goMan(item)">{{item.name}}</div>
+          <a class="title link" (click)="goMan(item)">{{item.name}}</a>
           <div class="info">
             <a href="">
                               浏览 {{item.viewCount}}
@@ -87,7 +87,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of manList;let index = index">
-          <td>{{item.name}}</td>
+          <td><a class="link" (click)="goMan(item)">{{item.name}}</a></td>
           <td>{{item.des| slice:0:10}}</td>
           <td>{{item.viewCount}}</td>
           <td>{{item.commentCount}}</td>

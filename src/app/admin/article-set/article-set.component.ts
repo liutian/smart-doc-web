@@ -10,7 +10,7 @@ import { ActiveModal } from 'app/share/modal/active-modal';
   styleUrls: ['./article-set.component.scss']
 })
 export class ArticleSetComponent implements OnInit {
-  public menuData;
+  menuData;
 
   constructor(private apiService: ApiService,
     private treeMenuService: TreeMenuService,
@@ -30,6 +30,10 @@ export class ArticleSetComponent implements OnInit {
 
       this.menuData = this.treeMenuService.parseTreeMenu(articleList);
     });
+  }
+
+  close() {
+    this.activeModal.close('close');
   }
 
   articleDel(e) {

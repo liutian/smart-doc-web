@@ -98,6 +98,7 @@ window.UEDITOR_CONFIG = {
 
   // 服务器统一请求接口路径
   serverUrl: scriptPath + 'config.json',
+  autoHeightEnabled: false,
 
   lang: /^zh/.test(navigator.language || navigator.browserLanguage || navigator.userLanguage) ? 'zh-cn' : 'en',
   langPath: scriptPath + 'lang/',

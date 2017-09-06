@@ -1,6 +1,12 @@
 <aside>
-  <div class="title">{{siteData.site.name}}</div>
-  <app-tree-menu [menuData]="menuData" (select)="goto($event)" [selectMenuId]="selectArticleId"></app-tree-menu>
+  <div class="aside-title" (click)="showManList = !showManList">
+    {{selectMan.name | slice:0:10}} &nbsp;
+    <i class="fa fa-caret-down"></i>
+  </div>
+  <div class="drop-down" [hidden]="!showManList" [class.active]="showManList">
+    <div class="item" *ngFor="let item of siteData?.manList" [hidden]="item.id === selectMan.id" (click)="switchMan(item)">{{item.name}}</div>
+  </div>
+  <app-tree-menu [hidden]="showManList" [menuData]="menuData" (select)="goto($event)" [selectMenuId]="selectArticleId"></app-tree-menu>
 </aside>
 
 <div class="main-content">

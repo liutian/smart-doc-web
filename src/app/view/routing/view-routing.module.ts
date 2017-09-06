@@ -25,6 +25,16 @@ import { SiteViewResolver } from 'app/view/routing/site-resolver.service';
             ]
           }
         ]
+      }, {
+        path: 'iframe/:siteId/:manId',
+        component: ManualLayoutComponent,
+        resolve: { siteData: SiteViewResolver },
+        children: [
+          {
+            path: ':articleId',
+            component: ManualArticleComponent
+          }
+        ]
       }
     ])
   ],

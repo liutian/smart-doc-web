@@ -1,23 +1,9 @@
 <div class="modal-header">
   文章管理
 </div>
-<div class="modal-body justify-layout">
-  <div class="side">
-    <app-tree-menu [menuData]="menuData" [showBtn]="true" (del)="articleDel($event)" (add)="articleAdd($event)" (edit)="articleEdit($event)"></app-tree-menu>
-  </div>
-
-  <form>
-    <h3>新手上路</h3>
-    <div class="form-group">
-      <div class="label">标题</div>
-      <input type="text" class="form-control">
-    </div>
-    <div class="form-group">
-      <div class="label">作者</div>
-      <input type="text" class="form-control">
-    </div>
-    <div class="form-action right-layout">
-      <div class="btn btn-primary ">保存</div>
-    </div>
-  </form>
+<div class="modal-body">
+  <app-tree-menu [menuData]="menuData" [showBtn]="true" (del)="articleDel($event)" (add)="articleAdd($event)" (edit)="articleEdit($event)"></app-tree-menu>
+</div>
+<div class="modal-footer">
+  <div class="btn btn-primary" (click)="close()">关闭</div>
 </div>

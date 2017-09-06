@@ -7,12 +7,12 @@ import { environment } from 'environments/environment';
 })
 export class UploadDirective implements OnInit {
 
-  private scriptPath = 'assets/lib/fine-uploader/';
   public uploader: any;
   @Input() endpoint: string;
   @Input() autoUpload: boolean;
   @Output() allComplete = new EventEmitter();
   @Output() complete = new EventEmitter();
+  private scriptPath = 'assets/lib/fine-uploader/';
 
   constructor(private eleRef: ElementRef) { }
 

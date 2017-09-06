@@ -40,4 +40,5 @@ $guide-affix-height: 50px;
 .guide.affix {
     position: fixed;
     top: $layout-header-height + $guide-affix-height;
+    width: $guide-affix-width;
 }

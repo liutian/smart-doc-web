@@ -28,11 +28,25 @@ export class ActiveModal {
     if (!this.windowModalRef) {
       return;
     }
+
+    this.windowModalRef.instance.show = false;
+    window.setTimeout(() => {
+      this.removeEle();
+    }, 300);
+
     if (result instanceof Error) {
       this.reject(result);
     } else {
       this.resolve(result);
     }
+  }
+
+  backdrop() {
+    if (!this.windowModalRef) {
+      return;
+    }
+
+    this.resolve('backdrop');
     this.removeEle();
   }
 

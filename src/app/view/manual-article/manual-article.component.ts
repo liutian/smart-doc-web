@@ -1,24 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Optional, SkipSelf } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { ApiService } from 'app/view/api.service';
+import { ManualLayoutComponent } from 'app/view/manual-layout/manual-layout.component';
 
 @Component({
   templateUrl: './manual-article.component.html',
   styleUrls: ['./manual-article.component.scss']
 })
 export class ManualArticleComponent implements OnInit {
-
-  @ViewChild('vRoolView') vRollView;
   sectionActive = 0;
   article: any = {};
   sectionList = [];
   currArticleStep;
   preview: boolean;
+  @ViewChild('vRoolView') vRollView;
 
   constructor(
+    @Optional() @SkipSelf() private parentComponent: ManualLayoutComponent,
     private router: Router,
     private route: ActivatedRoute,
     private apiService: ApiService,
@@ -31,7 +32,8 @@ export class ManualArticleComponent implements OnInit {
   ngOnInit() {
     this.preview = !!this.route.snapshot.queryParamMap.get('preview');
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.initArticle(params.get('articleId'));
+      const articleId = params.get('articleId');
+      this.initArticle(articleId);
     });
   }
 
@@ -41,7 +43,7 @@ export class ManualArticleComponent implements OnInit {
       this.article = article;
 
       this.sectionList = [];
-      this.article.content = this.processContentHtml(this.article.content, ' > h2', (ele, index) => {
+      this.article.content = this.processContentHtml(this.article.content || '暂无内容', ' > h2', (ele, index) => {
         this.sectionList.push({ name: ele.innerText });
         ele.className += ' article-section-step';
       });
@@ -51,6 +53,9 @@ export class ManualArticleComponent implements OnInit {
         this.sectionActive = 0;
       }, 0);
 
+      if (this.parentComponent) {
+        this.parentComponent.selectArticleId = id;
+      }
     });
   }
 

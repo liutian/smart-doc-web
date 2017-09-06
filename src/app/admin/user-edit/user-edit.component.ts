@@ -11,7 +11,6 @@ import { ActiveModal } from 'app/share/modal/active-modal';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
-
   formData: any = {};
 
   constructor(

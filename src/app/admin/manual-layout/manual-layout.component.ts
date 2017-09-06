@@ -11,10 +11,12 @@ import { ApiService } from 'app/admin/api.service';
   styleUrls: ['./manual-layout.component.scss']
 })
 export class ManualLayoutComponent implements OnInit {
-  public menuData;
+  public selectArticleId;
+  menuData;
   man;
-  backSiteId;
-  selectArticleId;
+
+  private backSiteId;
+  private backViewType;
 
   constructor(
     private treeMenuService: TreeMenuService,
@@ -25,6 +27,7 @@ export class ManualLayoutComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.switchMap((paramsMap: ParamMap) => {
       this.backSiteId = paramsMap.get('siteId');
+      this.backViewType = paramsMap.get('viewType');
       const manId = paramsMap.get('manId');
       return Observable.zip(this.apiService.findArticle(
         new HttpParams().set('manId', manId)
@@ -34,28 +37,40 @@ export class ManualLayoutComponent implements OnInit {
         return {
           id: a.id,
           name: a.title,
-          parentId: a.parentId
+          parentId: a.parentId,
         };
       });
 
       this.menuData = this.treeMenuService.parseTreeMenu(articleList);
       this.man = res[1];
 
-      if (this.route.firstChild) {
-        this.selectArticleId = this.route.firstChild.snapshot.paramMap.get('articleId');
+      if (!this.route.firstChild) {
+        if (this.menuData[0].menuList.length === 0) {
+          this.selectArticle({ menu: this.menuData[0] }, true);
+        } else if (this.menuData[0].menuList[0].menuList.length === 0) {
+          this.selectArticle({ menu: this.menuData[0].menuList[0] }, true);
+        } else if (this.menuData[0].menuList[0].menuList[0].length === 0) {
+          this.selectArticle({ menu: this.menuData[0].menuList[0].menuList[0] }, true);
+        }
       }
     });
 
   }
 
-  selectArticle(data) {
+  selectArticle(data, replace?) {
     if (!data.menu.menuList || data.menu.menuList.length <= 0) {
-      this.router.navigate([data.menu.id], { relativeTo: this.route });
+      this.router.navigate([data.menu.id], {
+        relativeTo: this.route,
+        replaceUrl: replace
+      });
     }
   }
 
   back() {
-    this.router.navigate(['admin', { siteId: this.backSiteId }]);
+    this.router.navigate(['admin', {
+      siteId: this.backSiteId,
+      viewType: this.backViewType
+    }]);
   }
 
 }

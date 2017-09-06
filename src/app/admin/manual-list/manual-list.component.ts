@@ -18,11 +18,10 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
   styleUrls: ['./manual-list.component.scss']
 })
 export class ManualListComponent implements OnInit {
-
-  public siteList: any[];
+  siteList: any[];
   selectSite: any;
   manList: [any];
-  viewType = 'list';
+  viewType: string;
 
   constructor(
     private broadcastService: BroadcastService,
@@ -38,9 +37,8 @@ export class ManualListComponent implements OnInit {
     });
 
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const siteId = params.get('siteId');
-
-      this.loadData(siteId);
+      this.viewType = params.get('viewType') || 'table';
+      this.loadData(params.get('siteId'));
     });
   }
 
@@ -49,7 +47,7 @@ export class ManualListComponent implements OnInit {
       title: '确定删除吗',
       size: 'small'
     }).result.then(bool => {
-      if (bool) {
+      if (bool === true) {
         this.apiService.updateMan(item.id, { del: 1 }).subscribe(res => {
           this.manList.splice(index, 1);
         });
@@ -102,7 +100,7 @@ export class ManualListComponent implements OnInit {
   }
 
   openArticleSetModal(man) {
-    this.modal.open(ArticleSetComponent, { size: 'large', manId: man.id });
+    this.modal.open(ArticleSetComponent, { manId: man.id });
   }
 
   addManual() {
@@ -117,7 +115,8 @@ export class ManualListComponent implements OnInit {
 
   goMan(man) {
     this.router.navigate(['admin', 'manual', man.id, {
-      siteId: this.selectSite.id
+      siteId: this.selectSite.id,
+      viewType: this.viewType
     }]);
   }
 

@@ -11,8 +11,8 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
   styleUrls: ['./site-list.component.scss']
 })
 export class SiteListComponent implements OnInit {
-  private listChange = false;
   siteList: [any];
+  private listChange = false;
 
   constructor(
     private activeModal: ActiveModal,

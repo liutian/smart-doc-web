@@ -10,7 +10,6 @@ import { pick } from 'app/util/util';
 })
 export class ManualSaveComponent implements OnInit {
   manId: string;
-
   formData: {
     name: string,
     cover: string,

@@ -2,10 +2,9 @@
   <div class="title">{{article.title}}</div>
 
   <div class="action-btn">
-    <a class="btn btn-primary" [routerLink]="['/view/s',article.siteId,article.manId,article.id]" [queryParams]="{preview: true}"
-      target="_blank">预览</a>
-    <div class="btn btn-primary" (click)="submit(false)">保存</div>
-    <div class="btn btn-default" (click)="submit(true)">发布</div>
+    <a class="btn " [routerLink]="['/view/s',article.siteId,article.manId,article.id]" [queryParams]="{preview: true}" target="_blank">预览</a>
+    <div class="btn " (click)="submit()">保存</div>
+    <div class="btn btn-primary" (click)="submit(article.state === 1 ? 0 : 1)">{{article.state === 1 ? '转为草稿' : '发布' }}</div>
   </div>
 </div>
 

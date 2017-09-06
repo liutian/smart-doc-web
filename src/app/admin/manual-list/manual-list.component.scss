@@ -95,20 +95,12 @@ $side-item-height: 50px;
         }
     }
 
-    .title{
-        cursor: pointer;
-    }
-
     .title,.info {
         @include line-one;
         margin: 0 10px;
         line-height: 35px;
     }
 
-    .title:hover {
-        text-decoration: underline;
-        color: $active-color;
-    }
 }
 
 .list-item-preview{

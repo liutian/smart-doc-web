@@ -1,33 +1,4 @@
-@import 'var';
-@import 'mixin';
 
-$side-width: 40%;
-
-.modal-body {
-
-    .side {
-        width: $side-width;
-        border-right: solid 1px $gray;
-        margin-right: -1px;
-        min-height: 150px;
-    }
-}
-
-form {
-    width: calc(100% - #{$side-width});
-    padding-left: 20px;
-
-    .form-group{
-        $side-width: 20%;
-
-        .label {
-            display: inline-block;
-            width: $side-width;
-        }
-
-        .form-control {
-            display: inline-block;
-            width: calc(100% - #{$side-width} - 1em);
-        }
-    }
+.modal-body{
+  padding: 20px 50px !important;
 }

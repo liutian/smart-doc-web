@@ -14,7 +14,6 @@ import { BroadcastService, Keys } from 'app/core/broadcast.service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-
   userInfo: any;
 
   constructor(
