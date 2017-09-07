@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiPath: '',
-  uploadPath: ''
+  apiPath: 'api',
+  uploadPath: 'api/open/upload'
 };

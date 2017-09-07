@@ -14,7 +14,7 @@ export class ManualSaveComponent implements OnInit {
     name: string,
     cover: string,
     des: string,
-    state: number
+    state: number,
   } | any = {};
 
   constructor(

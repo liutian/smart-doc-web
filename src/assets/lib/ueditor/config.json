@@ -12,7 +12,7 @@
   "imageCompressEnable": true,
   "imageCompressBorder": 1600,
   "imageInsertAlign": "none",
-  "imageUrlPrefix": "/wsk2",//图片上传 显示的路径
+  "imageUrlPrefix": "/wsk2", //图片上传 显示的路径
   "imagePathFormat": "\/server\/ueditor\/upload\/image\/{yyyy}{mm}{dd}\/{time}{rand:6}",
   "scrawlActionName": "uploadscrawl",
   "scrawlFieldName": "upfile",
@@ -26,8 +26,7 @@
   "snapscreenInsertAlign": "none",
   "catcherLocalDomain": [
     "127.0.0.1",
-    "localhost",
-    "img.baidu.com"
+    "localhost"
   ],
   "catcherActionName": "catchimage",
   "catcherFieldName": "source",

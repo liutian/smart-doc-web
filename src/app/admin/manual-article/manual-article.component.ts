@@ -32,7 +32,7 @@ export class ManualArticleComponent implements OnInit {
 
   }
 
-  submit(state) {
+  submit(state?) {
     const params: any = { content: this.article.content };
     if (Number.isInteger(state)) {
       params.state = state;
