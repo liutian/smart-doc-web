@@ -35,7 +35,7 @@ export class ManualSaveComponent implements OnInit {
   }
 
   onUpload(e) {
-    this.formData.cover = e[2].files[0].path;
+    this.formData.cover = e[2].files.fileList[0].path;
   }
 
   submit() {

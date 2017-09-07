@@ -36,7 +36,7 @@ export class SiteListComponent implements OnInit {
   }
 
   openSiteAddModal() {
-    this.modal.open(SiteSaveComponent).result.then((res) => {
+    this.modal.open(SiteSaveComponent, { size: 'large' }).result.then((res) => {
       if (res === true) {
         this.load();
         this.listChange = true;
@@ -45,7 +45,7 @@ export class SiteListComponent implements OnInit {
   }
 
   openSiteEditModal(item) {
-    this.modal.open(SiteSaveComponent, { siteId: item.id }).result.then((res) => {
+    this.modal.open(SiteSaveComponent, { size: 'large', siteId: item.id }).result.then((res) => {
       if (res === true) {
         this.load();
         this.listChange = true;

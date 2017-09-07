@@ -20,6 +20,7 @@ export class TreeMenuService {
 
     rootMenu.forEach(function (menu) {
       menu.menuList = [];
+      menu.root = rootMenu;
       for (let i = 0; i < endMenu.length; i++) {
         const m = endMenu[i];
         if (m.parentId === menu.id) {
@@ -35,6 +36,7 @@ export class TreeMenuService {
 
     childMenu.forEach(function (menu) {
       menu.menuList = [];
+      menu.root = rootMenu;
       for (let i = 0; i < endMenu.length; i++) {
         const m = endMenu[i];
         if (m.parentId === menu.id) {

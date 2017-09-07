@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 import { ApiService } from 'app/admin/api.service';
 import { ActiveModal } from 'app/share/modal/active-modal';
+import { NotificationService } from 'app/core/notification/notification.service';
 
 @Component({
   templateUrl: './article-set.component.html',
@@ -12,7 +13,9 @@ import { ActiveModal } from 'app/share/modal/active-modal';
 export class ArticleSetComponent implements OnInit {
   menuData;
 
-  constructor(private apiService: ApiService,
+  constructor(
+    private notificationService: NotificationService,
+    private apiService: ApiService,
     private treeMenuService: TreeMenuService,
     private activeModal: ActiveModal) { }
 
@@ -38,11 +41,9 @@ export class ArticleSetComponent implements OnInit {
 
   articleDel(e) {
     this.apiService.updateArticle(e.menu.id, { del: 1 }).subscribe(() => {
-      if (e.menu.parent) {
-        e.menu.parent.menuList.slice(e.index, 1);
-      } else {
-        e.menu.root.menuList.slice(e.index, 1);
-      }
+      e.callback(true);
+    }, () => {
+      e.callback(false);
     });
   }
 
@@ -54,24 +55,23 @@ export class ArticleSetComponent implements OnInit {
     };
 
     this.apiService.addArticle(data).subscribe((res: any) => {
-      e.parent.menuList.unshift({
-        id: res.id,
-        name: res.title,
-        parentId: data.parentId,
-        parent: e.parent,
-        menuList: []
-      });
-      e.callback(true);
-    }, () => {
+      e.callback(true, res.id);
+    }, (resError: HttpErrorResponse) => {
       e.callback(false);
+      if (resError.error.code === 1000) {
+        this.notificationService.show({ title: '文章标题有重复' });
+      }
     });
   }
 
   articleEdit(e) {
     this.apiService.updateArticle(e.id, { title: e.name }).subscribe((res: any) => {
       e.callback(true);
-    }, () => {
+    }, (resError: HttpErrorResponse) => {
       e.callback(false);
+      if (resError.error.code === 1000) {
+        this.notificationService.show({ title: '文章标题有重复' });
+      }
     });
   }
 

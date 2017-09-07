@@ -31,7 +31,7 @@ export class SiteSaveComponent implements OnInit {
   }
 
   onUpload(e) {
-    this.formData.logo = e[2].files[0].path;
+    this.formData.logo = e[2].files.fileList[0].path;
   }
 
   close() {

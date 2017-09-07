@@ -56,7 +56,10 @@ export class ManualListComponent implements OnInit {
   }
 
   openManEditModal(item) {
-    this.modal.open(ManualSaveComponent, { manId: item.id }).result.then((res) => {
+    this.modal.open(ManualSaveComponent, {
+      manId: item.id,
+      size: 'large'
+    }).result.then((res) => {
       this.switchSite(this.selectSite, true);
     });
   }
@@ -80,7 +83,7 @@ export class ManualListComponent implements OnInit {
   }
 
   openSiteAddModal() {
-    this.modal.open(SiteSaveComponent).result.then((res) => {
+    this.modal.open(SiteSaveComponent, { size: 'large' }).result.then((res) => {
       if (res === true) {
         this.loadData();
       }
@@ -100,12 +103,16 @@ export class ManualListComponent implements OnInit {
   }
 
   openArticleSetModal(man) {
-    this.modal.open(ArticleSetComponent, { manId: man.id });
+    this.modal.open(ArticleSetComponent, {
+      manId: man.id,
+      size: 'large'
+    });
   }
 
   addManual() {
     this.modal.open(ManualSaveComponent, {
-      siteId: this.selectSite.id
+      siteId: this.selectSite.id,
+      size: 'large'
     }).result.then((res) => {
       if (res === true) {
         this.switchSite(this.selectSite, true);

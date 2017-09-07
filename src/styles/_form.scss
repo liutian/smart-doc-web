@@ -13,6 +13,8 @@
     outline-width: 0;
     line-height: 1.5;
     margin: 5px 0;
+
+    
 }
 
 .form-action{
@@ -21,4 +23,8 @@
 
 button:disabled,input:disabled,submit:disabled{
     cursor: no-drop;
+}
+
+input.form-control,textarea.form-control{
+    padding: 5px;
 }

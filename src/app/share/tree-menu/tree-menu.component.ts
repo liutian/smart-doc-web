@@ -80,7 +80,16 @@ export class TreeMenuComponent implements OnInit {
       if (result === true) {
         this.del.emit({
           menu: menu,
-          index: index
+          index: index,
+          callback: (ok) => {
+            if (ok) {
+              if (menu.parent) {
+                menu.parent.menuList.splice(index, 1);
+              } else {
+                menu.root.splice(index, 1);
+              }
+            }
+          }
         });
       }
     });
@@ -103,8 +112,16 @@ export class TreeMenuComponent implements OnInit {
     this.add.emit({
       name: menu.addInput,
       parent: menu,
-      callback: (ok) => {
+      callback: (ok, id) => {
         if (ok) {
+          menu.menuList.push({
+            id: id,
+            name: menu.addInput,
+            parentId: menu.parentId,
+            parent: menu.parent,
+            root: menu.root,
+            menuList: []
+          });
           menu.showAddInput = false;
         }
       }
