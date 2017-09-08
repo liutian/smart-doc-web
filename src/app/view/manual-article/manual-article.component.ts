@@ -11,12 +11,16 @@ import { ManualLayoutComponent } from 'app/view/manual-layout/manual-layout.comp
   styleUrls: ['./manual-article.component.scss']
 })
 export class ManualArticleComponent implements OnInit {
+  @ViewChild('vRoolView') vRollView;
   sectionActive = 0;
   article: any = {};
   sectionList = [];
   currArticleStep;
   preview: boolean;
-  @ViewChild('vRoolView') vRollView;
+  private tagName = 'h2';
+  private tagReg = new RegExp('(<' + this.tagName + ')([^>]*)>(.*?)<(\/' + this.tagName + '>)', 'img');
+  private tagClassReg = new RegExp('(class=)(\'|")([^\'"]*)(\'|")', 'i');
+  private tagAppendClass = 'article-section-step';
 
   constructor(
     @Optional() @SkipSelf() private parentComponent: ManualLayoutComponent,
@@ -43,10 +47,7 @@ export class ManualArticleComponent implements OnInit {
       this.article = article;
 
       this.sectionList = [];
-      this.article.content = this.processContentHtml(this.article.content || '暂无内容', ' > h2', (ele, index) => {
-        this.sectionList.push({ name: ele.innerText });
-        ele.className += ' article-section-step';
-      });
+      this.article.content = this.processContentHtml(this.article.content || '暂无内容', this.sectionList);
       this.article.content = this.sanitizer.bypassSecurityTrustHtml(this.article.content);
       window.setTimeout(() => {
         this.vRollView.calcSection();
@@ -59,19 +60,20 @@ export class ManualArticleComponent implements OnInit {
     });
   }
 
-  processContentHtml(content, selector, callback) {
-    const fragment = window.document.createDocumentFragment();
-    const eleHost = document.createElement('div');
-    eleHost.className = 'host';
-    eleHost.innerHTML = content;
-    fragment.appendChild(eleHost);
-    const eleLink = fragment.querySelectorAll('.host ' + selector);
+  processContentHtml(content: string, list: any[]) {
+    content = content.replace(this.tagReg, (all, tagStart, attr, text, tagEnd) => {
+      list.push({ name: text.replace(/<[^>]*>/img, '').trim() });
 
-    for (let i = 0; i < eleLink.length; i++) {
-      callback(eleLink[i], i);
-    }
+      if (attr && attr.includes('class=')) {
+        attr = attr.replace(this.tagClassReg, '$1$2$3 ' + this.tagAppendClass + '$4');
+      } else {
+        attr = (attr || '') + ' class="' + this.tagAppendClass + '"';
+      }
 
-    return eleHost.innerHTML;
+      return tagStart + attr + '>' + text + '<' + tagEnd;
+    });
+
+    return content;
   }
 
   onRoll(index) {
