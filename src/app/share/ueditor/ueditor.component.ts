@@ -92,6 +92,7 @@ export class UeditorComponent implements OnInit, AfterViewInit {
 
 
 window.UEDITOR_CONFIG = {
+  topOffset: '60',
   zIndex: 1,
   // 为编辑器实例添加一个路径，这个不能被注释
   UEDITOR_HOME_URL: scriptPath,
