@@ -44,18 +44,24 @@ export class ManualArticleComponent implements OnInit {
   initArticle(id) {
     const api = this.preview ? 'getAuthArticle' : 'getArticle';
     this.apiService[api](id).subscribe(article => {
-      this.article = article;
+      if (this.parentComponent) {
+        this.parentComponent.selectArticleId = id;
+      }
 
+      this.article = article;
       this.sectionList = [];
       this.article.content = this.processContentHtml(this.article.content || '暂无内容', this.sectionList);
       this.article.content = this.sanitizer.bypassSecurityTrustHtml(this.article.content);
+
       window.setTimeout(() => {
         this.vRollView.calcSection();
         this.sectionActive = 0;
       }, 0);
 
-      if (this.parentComponent) {
-        this.parentComponent.selectArticleId = id;
+      if (window.renderReady) {
+        window.setTimeout(() => {
+          window.renderReady();
+        }, 100);
       }
     });
   }

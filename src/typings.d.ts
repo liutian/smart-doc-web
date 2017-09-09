@@ -11,6 +11,7 @@ interface Window {
   env: any;
   localStorage: any;
   qq: any;
+  renderReady: Function;
 }
 
 interface Navigator {
