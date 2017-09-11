@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 export enum Keys {
-  SiteList = 'SiteList'
+  SiteList
 }
 
 @Injectable()
