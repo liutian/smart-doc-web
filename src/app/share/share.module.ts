@@ -16,6 +16,10 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
 import { ModalService } from 'app/share/modal/modal.service';
 import { UeditorComponent } from 'app/share/ueditor/ueditor.component';
 import { UploadDirective } from './upload.directive';
+import { SelectComponent } from './select/select.component';
+import { SelectOptionComponent } from 'app/share/select/select-option/select-option.component';
+import { SelectMatchComponent } from 'app/share/select/select-match/select-match.component';
+import { ResizeWidthDirective } from './resize-width.directive';
 
 @NgModule({
   imports: [
@@ -33,7 +37,11 @@ import { UploadDirective } from './upload.directive';
     RollDirective,
     TopDirective,
     ModalComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    SelectComponent,
+    SelectOptionComponent,
+    SelectMatchComponent,
+    ResizeWidthDirective
   ],
 
   exports: [
@@ -47,7 +55,11 @@ import { UploadDirective } from './upload.directive';
     TopDirective,
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SelectComponent,
+    SelectOptionComponent,
+    SelectMatchComponent,
+    ResizeWidthDirective
   ],
   entryComponents: [ModalComponent, ModalConfirmComponent],
   providers: [TreeMenuService, ModalService]

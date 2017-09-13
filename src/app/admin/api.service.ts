@@ -61,4 +61,10 @@ export class ApiService {
   updateMan(id, data) {
     return this.http.post(`/auth/man/${id}`, data);
   }
+
+  findUser(data: HttpParams) {
+    return this.http.get('/auth/user', {
+      params: data
+    });
+  }
 }

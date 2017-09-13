@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "4.3.5",
     "@angular/router": "4.3.5",
     "@angular/service-worker": "1.0.0-beta.16",
+    "@types/hammerjs": "2.0.35",
     "core-js": "2.5.0",
     "fine-uploader": "5.15.0",
     "rxjs": "5.4.3",

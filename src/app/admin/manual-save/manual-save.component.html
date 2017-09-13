@@ -8,6 +8,15 @@
       <input type="text" class="form-control" name="name" [(ngModel)]="formData.name" required>
     </div>
     <div class="form-group">
+      <div class="label">管理员</div>
+      <div class="form-control admins">
+        <app-select [(ngModel)]="adminList" name="admins" [multiple]="true" (searchChange)="onSearchAdmin($event)">
+          <app-select-match label="$item.loginName"></app-select-match>
+          <app-select-option *ngFor="let item of adminAllList" [value]="item">{{item.loginName}}</app-select-option>
+        </app-select>
+      </div>
+    </div>
+    <div class="form-group">
       <div class="label">描述</div>
       <textarea rows="8" class="form-control" name="des" [(ngModel)]="formData.des"></textarea>
     </div>

@@ -1,0 +1,30 @@
+<!-- 多选 -->
+<div class="multiple-container" *ngIf="multiple" #multiple>
+  <div class="match-item empty">&nbsp;</div>
+  <div class="match-item" [class.next-del]="nextDelMatchIndex === index" *ngFor="let item of matchModel;let index = index;">
+    {{getLabel(item)}}
+    <i class="fa fa-times" role="menu" (click)="delMatch(item,index)"></i>
+  </div>
+  <input type="text" appResizeWidth class="search" *ngIf="!disabled" #search (input)="onSearch(search.value)" (keyup)="searchKeyup($event,search.value)"
+    (focus)="showDropdown = true">
+</div>
+
+<!-- 单选 -->
+<div class="single-container justify-layout" *ngIf="!multiple" (mouseenter)="searchInputFocus = true" (mouseleave)="searchInputFocus = false;"
+  (click)="onClickSingle()">
+  <div class="search-text" *ngIf="!showSearchText">
+    {{matchModel}}
+  </div>
+  <input type="text" class="search-input" *ngIf="showSearchText" [disabled]="disabled" [value]="matchModel" #search (input)="onSearch(search.value)"
+    (keyup)="searchKeyup($event,search.value)">
+  <div class="icon">
+    <i class="fa fa-angle-down" *ngIf="!showDropdown"></i>
+    <i class="fa fa-angle-up" *ngIf="showDropdown && !searchInputFocus"></i>
+    <i class="fa fa-times-circle" *ngIf="showDropdown && searchInputFocus" (click)="delMatch()"></i>
+  </div>
+</div>
+
+<!-- 下拉选项 -->
+<div class="drop-down" [class.active]="showDropdown">
+  <ng-content select="app-select-option"></ng-content>
+</div>

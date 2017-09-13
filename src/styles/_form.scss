@@ -6,15 +6,13 @@
         line-height: 2.5
     }
 }
-.form-control {
+input.form-control,textarea.form-control {
     width: 100%;
     border: 1px solid #ddd;
     resize: vertical;
     outline-width: 0;
     line-height: 1.5;
     margin: 5px 0;
-
-    
 }
 
 .form-action{
