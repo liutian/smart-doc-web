@@ -22,6 +22,7 @@ export class ManualListComponent implements OnInit {
   selectSite: any;
   manList: [any];
   viewType: string;
+  userInfo: any;
 
   constructor(
     private broadcastService: BroadcastService,
@@ -29,7 +30,9 @@ export class ManualListComponent implements OnInit {
     private router: Router,
     private modal: ModalService,
     private route: ActivatedRoute,
-    private apiService: ApiService) { }
+    private apiService: ApiService) {
+    this.userInfo = this.store.get('userInfo');
+  }
 
   ngOnInit() {
     this.broadcastService.subscribe(Keys.SiteList, () => {
@@ -66,9 +69,8 @@ export class ManualListComponent implements OnInit {
 
   loadData(siteId?) {
     this.apiService.findSiteAboutMe().subscribe((siteList: [any]) => {
-      const user = this.store.get('userInfo');
       this.siteList = siteList.map(s => {
-        s.own = s.createBy === user.id;
+        s.own = s.createBy === this.userInfo.id;
         return s;
       });
 
@@ -95,6 +97,7 @@ export class ManualListComponent implements OnInit {
       return;
     }
     this.selectSite = site;
+    this.selectSite.own = this.userInfo.id === site.createBy;
 
     const param = new HttpParams({ fromString: 'siteId=' + this.selectSite.id });
     this.apiService.findMan(param).subscribe((manList: [any]) => {
