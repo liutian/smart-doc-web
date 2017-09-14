@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class SelectOptionComponent implements OnInit, OnDestroy {
   @Input() value: any;
+  @Input() trackBy: string;
   @HostBinding('class.hide') hostHide: boolean;
   set isShow(b) {
     this._isShow = b;
@@ -39,27 +40,36 @@ export class SelectOptionComponent implements OnInit, OnDestroy {
     private ele: ElementRef) { }
 
 
-  @HostListener('click') selectOption() {
+  @HostListener('click') onselect() {
     this.parent.addMatch(this.value);
     this.isShow = false;
   }
 
-  @HostListener('mouseenter') onselect() {
-    this.parent.refreshOptionsSelect();
+  @HostListener('mouseenter') onEnter() {
+    this.parent.resetOptionsSelect();
     this.select = true;
   }
 
-  @HostListener('mouseleave') onunSelect() {
-    this.parent.refreshOptionsSelect();
+  @HostListener('mouseleave') onLeave() {
+    this.parent.resetOptionsSelect();
     this.select = false;
   }
 
   ngOnInit() {
-    this.parent.options.push(this);
+    this.parent.optionsComponent.push(this);
+    const value = this.trackBy ? this.value[this.trackBy] : this.value;
+
+    if (this.parent.multiple) {
+      this.isShow = !this.parent.matchModel.find(m => {
+        return (this.trackBy ? m[this.trackBy] : m) === value;
+      });
+    } else {
+      this.isShow = value !== (this.trackBy ? this.parent.matchModel[this.trackBy] : this.parent.matchModel);
+    }
   }
 
   ngOnDestroy() {
-    this.parent.options.splice(this.parent.options.indexOf(this), 1);
+    this.parent.optionsComponent.splice(this.parent.optionsComponent.indexOf(this), 1);
   }
 
 

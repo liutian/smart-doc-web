@@ -12,7 +12,7 @@
       <div class="form-control admins">
         <app-select [(ngModel)]="adminList" name="admins" [multiple]="true" (searchChange)="onSearchAdmin($event)">
           <app-select-match label="$item.loginName"></app-select-match>
-          <app-select-option *ngFor="let item of adminAllList" [value]="item">{{item.loginName}}</app-select-option>
+          <app-select-option *ngFor="let item of adminAllList" [value]="item" trackBy="id">{{item.loginName}}</app-select-option>
         </app-select>
       </div>
     </div>

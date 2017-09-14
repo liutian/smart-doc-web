@@ -5,18 +5,18 @@
     {{getLabel(item)}}
     <i class="fa fa-times" role="menu" (click)="delMatch(item,index)"></i>
   </div>
-  <input type="text" appResizeWidth class="search" *ngIf="!disabled" #search (input)="onSearch(search.value)" (keyup)="searchKeyup($event,search.value)"
-    (focus)="showDropdown = true">
+  <input type="text" appResizeWidth class="search" *ngIf="!disabled" #multSearch (input)="onSearch(multSearch.value)" (keydown)="onSearchKeydown()"
+    (keyup)="searchKeyup($event)" (focus)="showDropdown = true">
 </div>
 
 <!-- 单选 -->
 <div class="single-container justify-layout" *ngIf="!multiple" (mouseenter)="searchInputFocus = true" (mouseleave)="searchInputFocus = false;"
-  (click)="onClickSingle()">
-  <div class="search-text" *ngIf="!showSearchText">
+  (click)="showDropdown = true">
+  <div class="search-text" *ngIf="!showSearch">
     {{matchModel}}
   </div>
-  <input type="text" class="search-input" *ngIf="showSearchText" [disabled]="disabled" [value]="matchModel" #search (input)="onSearch(search.value)"
-    (keyup)="searchKeyup($event,search.value)">
+  <input type="text" class="search-input" *ngIf="showSearch" [disabled]="disabled" [value]="matchModel" #singleSearch (input)="onSearch(singleSearch.value)"
+    (keyup)="searchKeyup($event)" (keydown)="onSearchKeydown()">
   <div class="icon">
     <i class="fa fa-angle-down" *ngIf="!showDropdown"></i>
     <i class="fa fa-angle-up" *ngIf="showDropdown && !searchInputFocus"></i>

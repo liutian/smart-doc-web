@@ -13,6 +13,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 
+
 import { SelectOptionComponent } from './select-option/select-option.component';
 
 @Component({
@@ -30,24 +31,23 @@ import { SelectOptionComponent } from './select-option/select-option.component';
 export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() multiple: boolean;
   @Input() disabled: boolean;
-  @Output() searchChange = new EventEmitter<string>();
   @Input() showSearch: boolean;
+  @Output() searchChange = new EventEmitter<string>();
   @ViewChild('multiple') multipleView: ElementRef;
-  @ViewChild('search') searchView: ElementRef;
-  searchText: string;
-  options: SelectOptionComponent[] = [];
-  matchModel: any | [any];
-  matchSubject: Subject<any>;
-  searchInputFocus: boolean;
-  showSearchText: boolean;
+  @ViewChild('multSearch') multSearchView: ElementRef;
+  @ViewChild('singleSearch') singleSearchView: ElementRef;
 
   get showDropdown(): boolean {
-    if (this._showDropdown && !this.disabled) {
-      return true;
-    }
-    return false;
+    return this._showDropdown && !this.disabled;
   }
   set showDropdown(b) {
+    if (b === false) {
+      if (this.multiple) {
+        this.multSearchView.nativeElement.value = '';
+      } else {
+        this.singleSearchView.nativeElement.value = '';
+      }
+    }
     this._showDropdown = b;
   }
   set labelStr(label: string) {
@@ -55,13 +55,19 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
       throw Error('The label properties of the select component must start with $item');
     }
     this._labelArr = label.split('.');
-    this._labelArr.shift();
+    this._labelArr.shift(); // 删除第一个$item
   }
 
-  private nextDelMatchIndex: number;
+  optionsComponent: SelectOptionComponent[] = [];
+  matchModel: any | [any];
+  searchInputFocus: boolean;
+  nextDelMatchIndex: number;
+
+  private searchText: string;
   private _onChange: Function;
   private _showDropdown: boolean;
   private _labelArr: string[];
+  private _searchEmpty: boolean;
 
 
   constructor(private eleRef: ElementRef) { }
@@ -76,20 +82,13 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
 
   @HostListener('click', ['$event']) startSearch($event: MouseEvent) {
-    if (this.multiple) {
-      if ($event.target === this.multipleView.nativeElement) {
-        this.searchView.nativeElement.focus();
-      }
+    if (this.multiple && $event.target === this.multipleView.nativeElement) {
+      this.multSearchView.nativeElement.focus();
     }
 
     if ($event.currentTarget === this.eleRef.nativeElement) {
       $event.stopPropagation();
     }
-  }
-
-  onClickSingle() {
-    this.showSearchText = this.showSearch;
-    this.showDropdown = true;
   }
 
   onSearch(text) {
@@ -120,58 +119,65 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
 
   addMatch(match) {
-    this.nextDelMatchIndex = undefined;
     if (this.multiple) {
       this.matchModel.push(match);
     } else {
       this.matchModel = match;
-      this.refreshOptions();
     }
-    this._onChange(this.matchModel);
-    this.searchView.nativeElement.focus();
+    this.matchChange();
   }
 
   delMatch(match?, index?) {
-    this.nextDelMatchIndex = undefined;
     if (this.multiple) {
       this.matchModel.splice(index, 1);
     } else {
       this.matchModel = '';
     }
+    this.matchChange();
+  }
+
+  private matchChange() {
+    this.nextDelMatchIndex = undefined;
     this.refreshOptions();
+    if (this.multiple) {
+      this.multSearchView.nativeElement.focus();
+    }
     this._onChange(this.matchModel);
-    this.searchView.nativeElement.focus();
   }
 
   refreshOptions() {
-    for (const option of this.options) {
-      if (this.multiple ? this.matchModel.includes(option.value) : option.value === this.matchModel) {
-        option.isShow = false;
+    for (const option of this.optionsComponent) {
+      const value = option.trackBy ? option.value[option.trackBy] : option.value;
+
+      if (this.multiple) {
+        option.isShow = !this.matchModel.find(m => {
+          return (option.trackBy ? m[option.trackBy] : m) === value;
+        });
       } else {
-        option.isShow = true;
+        option.isShow = value !== (option.trackBy ? this.matchModel[option.trackBy] : option.trackBy);
       }
     }
   }
 
-  refreshOptionsSelect() {
-    this.options.forEach(o => {
+  resetOptionsSelect() {
+    this.optionsComponent.forEach(o => {
       o.select = false;
     });
   }
 
-  searchKeyup($event: KeyboardEvent, text) {
+  searchKeyup($event: KeyboardEvent) {
     if ($event.keyCode === 13) {
-      const selectOption = this.options.find(o => {
+      const option = this.optionsComponent.find(o => {
         return o.isShow && o.select;
       });
-      selectOption.selectOption();
+      option.onselect();
     } else if ($event.keyCode === 38 || $event.keyCode === 40) {
-      const copyOptions = this.options.filter(o => {
+      const copyOptions = this.optionsComponent.filter(o => {
         return o.isShow;
       });
       let selectIndex = copyOptions.findIndex(o => {
         if (o.select === true) {
-          o.onunSelect();
+          o.onLeave();
           return true;
         }
         return false;
@@ -186,12 +192,12 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
         }
       } else {
         selectIndex += 1;
-        if (selectIndex > this.options.length - 1) {
-          selectIndex = this.options.length - 1;
+        if (selectIndex > this.optionsComponent.length - 1) {
+          selectIndex = this.optionsComponent.length - 1;
         }
       }
-      copyOptions[selectIndex].onselect();
-    } else if ($event.keyCode === 8 && this.multiple && !text) {
+      copyOptions[selectIndex].onEnter();
+    } else if ($event.keyCode === 8 && this.multiple && this._searchEmpty) {
       if (Number.isInteger(this.nextDelMatchIndex)) {
         this.delMatch(this.matchModel[this.nextDelMatchIndex], this.nextDelMatchIndex);
         this.nextDelMatchIndex = undefined;
@@ -201,8 +207,12 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
         this.nextDelMatchIndex = undefined;
       }
     } else {
-      this.onSearch(text);
+      this.onSearch(this.searchText);
     }
+  }
+
+  onSearchKeydown() {
+    this._searchEmpty = !this.searchText;
   }
 
   getLabel(item) {
