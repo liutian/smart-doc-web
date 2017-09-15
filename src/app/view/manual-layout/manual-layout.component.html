@@ -6,7 +6,7 @@
   <div class="drop-down" [hidden]="!showManList" [class.active]="showManList">
     <div class="item" *ngFor="let item of siteData?.manList" [hidden]="item.id === selectMan.id" (click)="switchMan(item)">{{item.name}}</div>
   </div>
-  <app-tree-menu [hidden]="showManList" [menuData]="menuData" (select)="goto($event)" [selectMenuId]="selectArticleId"></app-tree-menu>
+  <app-tree [hidden]="showManList" [treeData]="articleList" (select)="goto($event)" [selectNodeId]="selectArticleId"></app-tree>
 </aside>
 
 <div class="main-content">

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
-import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 import { ApiService } from 'app/admin/api.service';
 import { ActiveModal } from 'app/share/modal/active-modal';
 import { NotificationService } from 'app/core/notification/notification.service';
@@ -11,19 +10,18 @@ import { NotificationService } from 'app/core/notification/notification.service'
   styleUrls: ['./article-set.component.scss']
 })
 export class ArticleSetComponent implements OnInit {
-  menuData;
+  articleList;
 
   constructor(
     private notificationService: NotificationService,
     private apiService: ApiService,
-    private treeMenuService: TreeMenuService,
     private activeModal: ActiveModal) { }
 
   ngOnInit() {
     this.apiService.findArticle(
       new HttpParams().set('manId', this.activeModal.option.manId)
     ).subscribe((res: [any]) => {
-      const articleList = res.map(a => {
+      this.articleList = res.map(a => {
         return {
           id: a.id,
           name: a.title,
@@ -31,7 +29,6 @@ export class ArticleSetComponent implements OnInit {
         };
       });
 
-      this.menuData = this.treeMenuService.parseTreeMenu(articleList);
     });
   }
 
@@ -40,7 +37,7 @@ export class ArticleSetComponent implements OnInit {
   }
 
   articleDel(e) {
-    this.apiService.updateArticle(e.menu.id, { del: 1 }).subscribe(() => {
+    this.apiService.updateArticle(e.node.id, { del: 1 }).subscribe(() => {
       e.callback(true);
     }, () => {
       e.callback(false);

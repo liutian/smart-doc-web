@@ -1,0 +1,3 @@
+<app-tree-node *ngIf="rootNode" [node]="rootNode" [showBtn]="showBtn" (select)="select.emit($event)" (del)="del.emit($event)" (add)="add.emit($event)"
+  (edit)="edit.emit($event)">
+</app-tree-node>

@@ -1,0 +1,45 @@
+<div class="node " [class.expend]="node.expend || (!node.name && !node.parent)">
+  <div class="node-text" [class.show-btn]="showBtn" *ngIf="node.name" [class.node-text-input]="showEdit" [class.active]="node.active">
+    <div *ngIf="!showEdit">
+      <div class="node-name" (click)="nodeClick(node, i)">
+        {{node.name}}
+      </div>
+      <div class="node-icon">
+        <i class="edit fa fa-edit" *ngIf="showBtn" title="编辑" (click)="showEditInput(node)"></i>
+        <i class="add fa fa-plus" *ngIf="showBtn" title="添加" (click)="showAddNode()"></i>
+        <i class="del fa fa-times" *ngIf="showBtn" title="删除" (click)="nodeDel(node, i)"></i>
+        <i class="arrow fa " [ngClass]="{'fa-angle-down': !node.expend,'fa-angle-up': node.expend}" *ngIf="node.children?.length"></i>
+        <i *ngIf="!node.children?.length">&nbsp;</i>
+      </div>
+    </div>
+    <div *ngIf="showEdit">
+      <input class="node-name" [(ngModel)]="node.name">
+      <div class="node-icon">
+        <i class="fa fa-check" (click)="confirmEditInput(node)"></i>
+        <i class="fa fa-times" (click)="cancelEditInput(node)"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn btn-primary add-node-btn" *ngIf="showBtn && !node.name && !node.parent" (click)="showAddNode()">
+    添加
+  </div>
+  
+  <div class="node-list" [class.root]="!node.name && !node.parent">
+
+    <div class="node " *ngIf="showAddInput">
+      <div class="node-text node-text-input">
+        <input type="text" class="node-name" [(ngModel)]="addInput">
+        <div class="node-icon">
+          <i class="fa fa-check" (click)="confirmAddInput(node)"></i>
+          <i class="fa fa-times" (click)="cancelAddInput(node)"></i>
+        </div>
+      </div>
+    </div>
+
+    <app-tree-node *ngFor="let n of node.children;let index = index;" [index]="index" [node]="n" [showBtn]="showBtn" (select)="select.emit($event)"
+      (del)="del.emit($event)" (add)="add.emit($event)" (edit)="edit.emit($event)"></app-tree-node>
+
+  </div>
+</div>

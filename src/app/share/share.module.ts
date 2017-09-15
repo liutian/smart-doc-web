@@ -5,9 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 import 'app/share/rxjs';
 import { LayoutComponent } from 'app/share/layout/layout.component';
-import { TreeMenuComponent } from 'app/share/tree-menu/tree-menu.component';
 import { PaginationComponent } from 'app/share/pagination/pagination.component';
-import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
+import { TreeService } from 'app/share/tree/tree.service';
 import { AffixDirective } from 'app/share/affix.directive';
 import { RollDirective } from 'app/share/roll.directive';
 import { TopDirective } from 'app/share/top.directive';
@@ -20,6 +19,8 @@ import { SelectComponent } from './select/select.component';
 import { SelectOptionComponent } from 'app/share/select/select-option/select-option.component';
 import { SelectMatchComponent } from 'app/share/select/select-match/select-match.component';
 import { ResizeWidthDirective } from './resize-width.directive';
+import { TreeComponent } from './tree/tree.component';
+import { TreeNodeComponent } from "./tree/tree-node/tree-node.component";
 
 @NgModule({
   imports: [
@@ -31,7 +32,6 @@ import { ResizeWidthDirective } from './resize-width.directive';
     UploadDirective,
     UeditorComponent,
     LayoutComponent,
-    TreeMenuComponent,
     PaginationComponent,
     AffixDirective,
     RollDirective,
@@ -41,14 +41,15 @@ import { ResizeWidthDirective } from './resize-width.directive';
     SelectComponent,
     SelectOptionComponent,
     SelectMatchComponent,
-    ResizeWidthDirective
+    ResizeWidthDirective,
+    TreeComponent,
+    TreeNodeComponent
   ],
 
   exports: [
     UploadDirective,
     UeditorComponent,
     LayoutComponent,
-    TreeMenuComponent,
     PaginationComponent,
     AffixDirective,
     RollDirective,
@@ -59,9 +60,10 @@ import { ResizeWidthDirective } from './resize-width.directive';
     SelectComponent,
     SelectOptionComponent,
     SelectMatchComponent,
-    ResizeWidthDirective
+    ResizeWidthDirective,
+    TreeComponent
   ],
   entryComponents: [ModalComponent, ModalConfirmComponent],
-  providers: [TreeMenuService, ModalService]
+  providers: [TreeService, ModalService]
 })
 export class ShareModule { }

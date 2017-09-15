@@ -2,7 +2,7 @@
   文章目录
 </div>
 <div class="modal-body">
-  <app-tree-menu [menuData]="menuData" [showBtn]="true" (del)="articleDel($event)" (add)="articleAdd($event)" (edit)="articleEdit($event)"></app-tree-menu>
+  <app-tree [treeData]="articleList" [showBtn]="true" (del)="articleDel($event)" (add)="articleAdd($event)" (edit)="articleEdit($event)"></app-tree>
 </div>
 <div class="modal-footer">
   <div class="btn btn-primary" (click)="close()">关闭</div>

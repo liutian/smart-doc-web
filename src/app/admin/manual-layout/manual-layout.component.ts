@@ -3,7 +3,6 @@ import { HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 import { ApiService } from 'app/admin/api.service';
 
 @Component({
@@ -12,14 +11,13 @@ import { ApiService } from 'app/admin/api.service';
 })
 export class ManualLayoutComponent implements OnInit {
   public selectArticleId;
-  menuData;
+  articleList;
   man;
 
   private backSiteId;
   private backViewType;
 
   constructor(
-    private treeMenuService: TreeMenuService,
     private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -33,7 +31,7 @@ export class ManualLayoutComponent implements OnInit {
         new HttpParams().set('manId', manId)
       ), this.apiService.getMan(manId));
     }).subscribe((res: [any]) => {
-      const articleList = res[0].map(a => {
+      this.articleList = res[0].map(a => {
         return {
           id: a.id,
           name: a.title,
@@ -41,25 +39,24 @@ export class ManualLayoutComponent implements OnInit {
         };
       });
 
-      this.menuData = this.treeMenuService.parseTreeMenu(articleList);
       this.man = res[1];
 
-      if (!this.route.firstChild) {
-        if (this.menuData[0].menuList.length === 0) {
-          this.selectArticle({ menu: this.menuData[0] }, true);
-        } else if (this.menuData[0].menuList[0].menuList.length === 0) {
-          this.selectArticle({ menu: this.menuData[0].menuList[0] }, true);
-        } else if (this.menuData[0].menuList[0].menuList[0].length === 0) {
-          this.selectArticle({ menu: this.menuData[0].menuList[0].menuList[0] }, true);
-        }
-      }
+      // if (!this.route.firstChild) {
+      //   if (this.menuData[0].menuList.length === 0) {
+      //     this.selectArticle({ menu: this.menuData[0] }, true);
+      //   } else if (this.menuData[0].menuList[0].menuList.length === 0) {
+      //     this.selectArticle({ menu: this.menuData[0].menuList[0] }, true);
+      //   } else if (this.menuData[0].menuList[0].menuList[0].length === 0) {
+      //     this.selectArticle({ menu: this.menuData[0].menuList[0].menuList[0] }, true);
+      //   }
+      // }
     });
 
   }
 
   selectArticle(data, replace?) {
-    if (!data.menu.menuList || data.menu.menuList.length <= 0) {
-      this.router.navigate([data.menu.id], {
+    if (!data.node.menuList || data.node.menuList.length <= 0) {
+      this.router.navigate([data.node.id], {
         relativeTo: this.route,
         replaceUrl: replace
       });

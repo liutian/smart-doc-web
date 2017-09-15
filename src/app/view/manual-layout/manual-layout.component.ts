@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 
 @Component({
   templateUrl: './manual-layout.component.html',
@@ -10,13 +9,12 @@ import { TreeMenuService } from 'app/share/tree-menu/tree-menu.service';
 })
 export class ManualLayoutComponent implements OnInit {
   selectArticleId;
-  menuData;
+  articleList;
   siteData;
   selectMan;
   showManList: boolean;
 
   constructor(
-    private treeMenuService: TreeMenuService,
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute) { }
@@ -28,7 +26,7 @@ export class ManualLayoutComponent implements OnInit {
       this.selectMan = this.siteData.manList.find(m => {
         return m.id === manId;
       });
-      const articleList = data.siteData.articleList.map(a => {
+      this.articleList = data.siteData.articleList.map(a => {
         return {
           id: a.id,
           name: a.title,
@@ -36,22 +34,20 @@ export class ManualLayoutComponent implements OnInit {
         };
       });
 
-      this.menuData = this.treeMenuService.parseTreeMenu(articleList);
-
-      if (!this.route.firstChild && this.menuData.length > 0) {
-        if (this.menuData[0].menuList.length === 0) {
-          this.goto({ menu: this.menuData[0] }, true);
-        } else if (this.menuData[0].menuList[0].menuList.length === 0) {
-          this.goto({ menu: this.menuData[0].menuList[0] }, true);
-        } else if (this.menuData[0].menuList[0].menuList[0].length === 0) {
-          this.goto({ menu: this.menuData[0].menuList[0].menuList[0] }, true);
-        }
-      }
+      // if (!this.route.firstChild && this.menuData.length > 0) {
+      //   if (this.menuData[0].menuList.length === 0) {
+      //     this.goto({ menu: this.menuData[0] }, true);
+      //   } else if (this.menuData[0].menuList[0].menuList.length === 0) {
+      //     this.goto({ menu: this.menuData[0].menuList[0] }, true);
+      //   } else if (this.menuData[0].menuList[0].menuList[0].length === 0) {
+      //     this.goto({ menu: this.menuData[0].menuList[0].menuList[0] }, true);
+      //   }
+      // }
     });
   }
 
   goto(e, replace?) {
-    this.router.navigate([e.menu.id], {
+    this.router.navigate([e.node.id], {
       replaceUrl: replace,
       relativeTo: this.route,
       queryParamsHandling: 'merge'
