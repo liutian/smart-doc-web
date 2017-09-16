@@ -81,7 +81,7 @@ export class TreeNodeComponent implements OnInit {
   }
 
   showAddNode() {
-    this.addInput = '新增文章';
+    this.addInput = '新节点';
     this.showAddInput = true;
     this.node.expend = true;
   }

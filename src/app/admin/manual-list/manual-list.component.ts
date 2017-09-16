@@ -23,6 +23,9 @@ export class ManualListComponent implements OnInit {
   manList: [any];
   viewType: string;
   userInfo: any;
+  dataTotal = 1;
+  dataCurrentPage = 1;
+  dataPageSize = 16;
 
   constructor(
     private broadcastService: BroadcastService,
@@ -99,10 +102,13 @@ export class ManualListComponent implements OnInit {
     this.selectSite = site;
     this.selectSite.own = this.userInfo.id === site.createBy;
 
-    const param = new HttpParams({ fromString: 'siteId=' + this.selectSite.id });
-    this.apiService.findMan(param).subscribe((manList: [any]) => {
-      this.manList = manList;
-    });
+    this.dataCurrentPage = 1;
+    this.loadManData();
+  }
+
+  goPage(page) {
+    this.dataCurrentPage = page;
+    this.loadManData();
   }
 
   openArticleSetModal(man) {
@@ -130,4 +136,17 @@ export class ManualListComponent implements OnInit {
     }]);
   }
 
+  private loadManData() {
+    const params = new HttpParams({
+      fromString: [
+        'siteId=' + this.selectSite.id,
+        'pageSize=' + this.dataPageSize,
+        'page=' + this.dataCurrentPage
+      ].join('&')
+    });
+    this.apiService.findMan(params).subscribe((res: any) => {
+      this.manList = res.data;
+      this.dataTotal = res.total;
+    });
+  }
 }

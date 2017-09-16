@@ -7,8 +7,7 @@ import {
   Output,
   EventEmitter,
   ApplicationRef,
-  ViewChild,
-  ElementRef
+  ViewChild
 } from '@angular/core';
 import { environment } from 'environments/environment';
 

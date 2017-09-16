@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angu
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnChanges {
 
   @Output() pageChange = new EventEmitter<number>();
   @Input() showMaxPage: number;
@@ -26,7 +26,7 @@ export class PaginationComponent implements OnInit {
   ngOnInit() {
     this.current = this.current || 1;
     this.total = this.total || 1;
-    this.pageSize = this.pageSize || 1;
+    this.pageSize = this.pageSize || 20;
     this.showMaxPage = this.showMaxPage || 5;
     this.calc();
   }
@@ -48,7 +48,7 @@ export class PaginationComponent implements OnInit {
 
   calc() {
     if (!this.total || !this.pageSize) return;
-    this.totalPage = this.total / this.pageSize;
+    this.totalPage = Math.ceil(this.total / this.pageSize);
     this.pages = (new Array(this.totalPage)).fill('0').map((v, i) => { return i + 1 });
 
     if (!this.showMaxPage || !this.current) return;

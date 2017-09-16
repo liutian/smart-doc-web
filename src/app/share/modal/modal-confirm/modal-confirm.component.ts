@@ -2,8 +2,7 @@ import {
   Component,
   AfterViewInit,
   AfterViewChecked,
-  ViewChild,
-  ElementRef
+  ViewChild
 } from '@angular/core';
 
 import { ActiveModal } from '../active-modal';

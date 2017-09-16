@@ -10,6 +10,7 @@
   </div>
 
   <div class="side-right" *ngIf="selectSite">
+    <!-- 头部 -->
     <div class="action-btn-bar justify-layout">
       <div class="left">
         <button class="btn btn-primary btn-add" *ngIf="selectSite.own" (click)="addManual()">创建文档</button>
@@ -21,6 +22,7 @@
         <i class="fa fa-list" [class.active]="this.viewType == 'table'"  (click)="this.viewType = 'table'"  role="menu"></i>
       </span>
     </div>
+    <!-- 列表试图   -->
     <div class="list justify-layout" *ngIf="viewType === 'list'">
       <ng-template ngFor let-item let-index [ngForOf]="manList">
         <div class="list-item">
@@ -76,7 +78,7 @@
         <div class="list-item-empty"></div>&nbsp;
       </ng-template>
     </div>
-
+    <!-- 表格试图 -->
     <table class="table table-hover" *ngIf="viewType === 'table'">
       <thead>
         <tr>
@@ -109,6 +111,10 @@
         </tr>
       </tbody>
     </table>
+    <!-- 分页 -->
+    <div class="page-bar">
+      <app-pagination [total]="dataTotal" [pageSize]="dataPageSize" [current]="dataCurrentPage" (pageChange)="goPage($event)"></app-pagination>
+    </div>
   </div>
 
 </div>
