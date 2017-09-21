@@ -10,7 +10,7 @@ $node-name-height: $base-font-size*3;
     overflow: hidden;
 
     &.expend {
-        max-height: calc(60em + #{$node-name-height});
+        max-height: calc(1000em + #{$node-name-height});
     }
 
     .node-text-input {

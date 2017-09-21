@@ -68,7 +68,12 @@ export class ManualArticleComponent implements OnInit {
 
   processContentHtml(content: string, list: any[]) {
     content = content.replace(this.tagReg, (all, tagStart, attr, text, tagEnd) => {
-      list.push({ name: text.replace(/<[^>]*>/img, '').trim() });
+      const name = text.replace(/<[^>]*>/img, '').trim();
+      if (!name) {
+        return all;
+      }
+
+      list.push({ name: name });
 
       if (attr && attr.includes('class=')) {
         attr = attr.replace(this.tagClassReg, '$1$2$3 ' + this.tagAppendClass + '$4');

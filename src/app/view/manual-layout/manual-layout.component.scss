@@ -26,7 +26,7 @@ aside {
     border-right: solid #e7e7e7 1px;
     margin-right: -1px;
     padding-left: $box-margin;
-    height: $min-height;
+    min-height: $min-height;
     overflow: auto;
 
     .drop-down{
