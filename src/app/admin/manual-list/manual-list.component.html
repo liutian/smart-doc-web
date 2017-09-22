@@ -24,7 +24,7 @@
     </div>
     <!-- 列表试图   -->
     <div class="list justify-layout" *ngIf="viewType === 'list'">
-      <ng-template ngFor let-item let-index [ngForOf]="manList">
+      <ng-container *ngFor="let item of manList;let index = index;">
         <div class="list-item">
           <div class="list-item-preview">
             <div class="set">
@@ -67,16 +67,16 @@
 
           </div>
         </div>&nbsp;
-      </ng-template>
+      </ng-container>
 
       <!-- <div class="list-item add" *ngIf="selectSiteId" (click)="addManual()">
         <i class="fa fa-plus-circle fa-2x"></i>
         <div class="des">创建文档</div>
       </div>&nbsp; -->
 
-      <ng-template ngFor [ngForOf]="[1,2,3,4,5,6,7,8,9]">
+      <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
         <div class="list-item-empty"></div>&nbsp;
-      </ng-template>
+      </ng-container>
     </div>
     <!-- 表格试图 -->
     <table class="table table-hover" *ngIf="viewType === 'table'">
