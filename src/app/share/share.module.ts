@@ -20,7 +20,8 @@ import { SelectOptionComponent } from 'app/share/select/select-option/select-opt
 import { SelectMatchComponent } from 'app/share/select/select-match/select-match.component';
 import { ResizeWidthDirective } from './resize-width.directive';
 import { TreeComponent } from './tree/tree.component';
-import { TreeNodeComponent } from "./tree/tree-node/tree-node.component";
+import { TreeNodeComponent } from './tree/tree-node/tree-node.component';
+import { AutoResizeHeightDirective } from './resize-height.directive';
 
 @NgModule({
   imports: [
@@ -43,10 +44,12 @@ import { TreeNodeComponent } from "./tree/tree-node/tree-node.component";
     SelectMatchComponent,
     ResizeWidthDirective,
     TreeComponent,
-    TreeNodeComponent
+    TreeNodeComponent,
+    AutoResizeHeightDirective
   ],
 
   exports: [
+    AutoResizeHeightDirective,
     UploadDirective,
     UeditorComponent,
     LayoutComponent,
