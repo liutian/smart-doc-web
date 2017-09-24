@@ -23,7 +23,7 @@ import { SelectOptionComponent } from './select-option/select-option.component';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectComponent),
+      useExisting: SelectComponent,
       multi: true
     }
   ]
