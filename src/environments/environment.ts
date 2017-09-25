@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiPath: 'http://127.0.0.1:40000',
-  uploadPath: 'http://127.0.0.1:40000/open/upload'
+  apiPath: 'api',
+  uploadPath: 'api/open/upload'
 };
 

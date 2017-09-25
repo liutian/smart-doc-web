@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
-    "start": "ng serve --open",
+    "start": "ng serve --open --proxy-config proxy.conf.js --ssl true",
     "hmr": "start --hmr",
     "build": "ng build -prod --bh / --stats-json stats.json",
     "test": "ng test",
