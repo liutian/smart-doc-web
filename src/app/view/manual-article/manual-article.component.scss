@@ -4,7 +4,7 @@ $guide-affix-width: 200px;
 $guide-affix-height: 50px;
 
 :host {
-    margin: $box-margin $box-margin*2;
+    margin: 0 $box-margin*2;
     display: block;
     position: relative;
 }
@@ -12,7 +12,7 @@ $guide-affix-height: 50px;
 .content,
 .header {
     padding-right: $guide-affix-width + $box-margin*2;
-
+    overflow: hidden;
 }
 
 .content /deep/ img {
