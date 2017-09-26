@@ -67,6 +67,5 @@ aside {
 }
 
 .main-content {
-    width: calc(100% - #{$side-width});
     padding-left: $side-width;
 }
