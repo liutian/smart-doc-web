@@ -11,7 +11,8 @@ export class CommonInterceptorService implements HttpInterceptor {
 
   private urlTime = {};
 
-  constructor(private notification: NotificationService,
+  constructor(
+    private notification: NotificationService,
     private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

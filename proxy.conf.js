@@ -1,12 +1,13 @@
 const PROXY_CONFIG = {
   '/api': {
-    target: "https://man.visionet.cn",
+    // target: 'https://man.visionet.cn',
+    target: 'http://127.0.0.1:40000',
     secure: false,
-    changeOrigin: true
+    changeOrigin: true,
     // ws: true,
-    // pathRewrite: {
-    //   '^/proxy': '/api'
-    // }
+    pathRewrite: {
+      '^/api': ''
+    }
   }
 }
 
