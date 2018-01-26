@@ -6,6 +6,7 @@
     "start": "ng serve --open --proxy-config proxy.conf.js",
     "hmr": "start --hmr",
     "build": "ng build -prod --vendor-chunk --sourcemaps --bh / --stats-json stats.json",
+    "build-docker": "ng build -prod --vendor-chunk -e docker",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
