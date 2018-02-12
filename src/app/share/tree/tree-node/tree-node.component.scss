@@ -5,13 +5,7 @@ $text-padding-left: 1.2em;
 $node-name-height: $base-font-size*3;
 
 .node {
-    max-height: $node-name-height;
-    transition: all 0.6s;
     overflow: hidden;
-
-    &.expend {
-        max-height: calc(1000em + #{$node-name-height});
-    }
 
     .node-text-input {
         border-bottom: solid #e7e7e7 1px;

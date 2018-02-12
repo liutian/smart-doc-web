@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NotificationComponent } from 'app/core/notification/notification.component';
 import { NotificationService } from 'app/core/notification/notification.service';
@@ -15,7 +16,8 @@ import { UpdateAvailableEvent } from '@angular/service-worker/src/low_level';
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   declarations: [NotificationComponent],
   entryComponents: [NotificationComponent],

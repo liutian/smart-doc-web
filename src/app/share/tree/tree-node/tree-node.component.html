@@ -1,4 +1,4 @@
-<div class="node " [class.expend]="node.expend || (!node.name && !node.parent)">
+<div class="node ">
   <div class="node-text" [class.show-btn]="showBtn" *ngIf="node.name" [class.node-text-input]="showEdit" [class.active]="node.active">
     <div *ngIf="!showEdit">
       <div class="node-name" (click)="nodeClick(node, i)">
@@ -25,8 +25,8 @@
   <div class="btn btn-primary add-node-btn" *ngIf="showBtn && !node.name && !node.parent" (click)="showAddNode()">
     添加
   </div>
-  
-  <div class="node-list" [class.root]="!node.name && !node.parent">
+
+  <div class="node-list" [@heightTrigger]="calcHeight(node)" [class.root]="!node.name && !node.parent">
 
     <div class="node " *ngIf="showAddInput">
       <div class="node-text node-text-input">

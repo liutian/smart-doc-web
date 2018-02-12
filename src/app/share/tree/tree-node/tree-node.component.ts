@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalService } from 'app/share/modal/modal.service';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
@@ -6,9 +6,17 @@ import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confi
 @Component({
   selector: 'app-tree-node',
   styleUrls: ['./tree-node.component.scss'],
-  templateUrl: './tree-node.component.html'
+  templateUrl: './tree-node.component.html',
+  animations: [
+    trigger('heightTrigger', [
+      state('expend', style({ height: '*' })),
+      state('shrink', style({ height: 0 })),
+      transition('expend <=> shrink', [
+        animate('0.2s ease-in')
+      ])
+    ])
+  ]
 })
-
 export class TreeNodeComponent implements OnInit {
   @Input() node: any;
   @Input() showBtn: boolean;
@@ -51,7 +59,7 @@ export class TreeNodeComponent implements OnInit {
 
   nodeClick(node, index) {
     if (node.children && node.children.length) {
-      this.node.expend = !this.node.expend;
+      node.expend = !node.expend;
     } else {
       this.select.emit({
         node: node,
@@ -111,6 +119,10 @@ export class TreeNodeComponent implements OnInit {
         }
       }
     });
+  }
+
+  calcHeight(node) {
+    return (node.expend || (!node.name && !node.parent)) ? 'expend' : 'shrink'
   }
 
   // private expendMenu(children, id) {
