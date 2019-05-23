@@ -1,20 +1,8 @@
-import {
-  Component,
-  OnInit,
-  forwardRef,
-  Input,
-  EventEmitter,
-  Output,
-  ContentChildren,
-  HostListener,
-  ElementRef,
-  ViewChild
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subject } from 'rxjs/Subject';
-
-
 import { SelectOptionComponent } from './select-option/select-option.component';
+
+
 
 @Component({
   selector: 'app-select',

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalService } from 'app/share/modal/modal.service';
 import { ModalConfirmComponent } from 'app/share/modal/modal-confirm/modal-confirm.component';
+import { ModalService } from 'app/share/modal/modal.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-tree-node',

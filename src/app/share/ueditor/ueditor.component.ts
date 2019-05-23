@@ -60,7 +60,7 @@ export class UeditorComponent implements OnInit, AfterViewInit {
     const editorProt = window.UE.Editor.prototype;
     editorProt._bkGetActionUrl_copy = editorProt._bkGetActionUrl_copy || editorProt.getActionUrl;
     editorProt._bkGetActionUrl = editorProt._bkGetActionUrl_copy;
-    editorProt.getActionUrl = function (action) {
+    editorProt.getActionUrl = function _getActionUrl(action) {
       if (action === 'uploadimage' || action === 'uploadscrawl' || action === 'uploadimage' || action === 'uploadvideo') {
         return environment.apiPath + '/open/upload?action=' + action;
       } else {

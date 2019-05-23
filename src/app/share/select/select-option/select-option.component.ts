@@ -1,8 +1,6 @@
-import { Component, OnInit, Host, Input, HostListener, OnDestroy, ElementRef, Renderer2, HostBinding } from '@angular/core';
-
+import { Component, ElementRef, Host, HostBinding, HostListener, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { SelectComponent } from '../select.component';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'app-select-option',

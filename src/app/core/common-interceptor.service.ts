@@ -1,10 +1,10 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-
-import { environment } from 'environments/environment';
 import { NotificationService } from 'app/core/notification/notification.service';
+import { environment } from 'environments/environment';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CommonInterceptorService implements HttpInterceptor {
@@ -23,7 +23,7 @@ export class CommonInterceptorService implements HttpInterceptor {
         duration: 1500,
         close: true
       });
-      return Observable.throw(new Error('overrequest'));
+      return observableThrowError(new Error('overrequest'));
     } else if (req.method !== 'GET') {
       this.urlTime[req.url] = Date.now();
     }
@@ -44,7 +44,7 @@ export class CommonInterceptorService implements HttpInterceptor {
     //   })
     // }
 
-    return next.handle(_req).catch(resError => {
+    return next.handle(_req).pipe(catchError((resError) => {
       let notice = '';
       if (resError.status === 401) {
         notice = '会话超时';
@@ -63,7 +63,7 @@ export class CommonInterceptorService implements HttpInterceptor {
       }
 
       return Observable.throw(resError);
-    });
+    }));
   }
 
 }

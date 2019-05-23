@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'app/admin/api.service';
+
 
 @Component({
   templateUrl: './manual-layout.component.html',
@@ -23,33 +22,24 @@ export class ManualLayoutComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.switchMap((paramsMap: ParamMap) => {
-      this.backSiteId = paramsMap.get('siteId');
-      this.backViewType = paramsMap.get('viewType');
-      const manId = paramsMap.get('manId');
-      return Observable.zip(this.apiService.findArticle(
+    this.route.params.subscribe((params: any) => {
+      this.backSiteId = params.siteId;
+      this.backViewType = params.viewType;
+      const manId = params.manId;
+      this.apiService.findArticle(
         new HttpParams().set('manId', manId)
-      ), this.apiService.getMan(manId));
-    }).subscribe((res: [any]) => {
-      this.articleList = res[0].map(a => {
-        return {
-          id: a.id,
-          name: a.title,
-          parentId: a.parentId,
-        };
+      ).subscribe((res: any) => {
+        this.articleList = res.map(a => {
+          return {
+            id: a.id,
+            name: a.title,
+            parentId: a.parentId,
+          };
+        });
       });
-
-      this.man = res[1];
-
-      // if (!this.route.firstChild) {
-      //   if (this.menuData[0].menuList.length === 0) {
-      //     this.selectArticle({ menu: this.menuData[0] }, true);
-      //   } else if (this.menuData[0].menuList[0].menuList.length === 0) {
-      //     this.selectArticle({ menu: this.menuData[0].menuList[0] }, true);
-      //   } else if (this.menuData[0].menuList[0].menuList[0].length === 0) {
-      //     this.selectArticle({ menu: this.menuData[0].menuList[0].menuList[0] }, true);
-      //   }
-      // }
+      this.apiService.getMan(manId).subscribe((res) => {
+        this.man = res;
+      });
     });
 
   }
