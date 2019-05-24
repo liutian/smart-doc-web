@@ -9,7 +9,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true })
   .then(function (moduleRef: NgModuleRef<AppModule>) {
     acceptHot(module, moduleRef);
   });
